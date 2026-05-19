@@ -365,49 +365,87 @@
   }
   .character-grid .portrait:hover img { transform: scale(1.02); }
 
-  /* portrait lightbox */
+  /* portrait expander — editorial overlay, no chrome */
   .portrait-lightbox {
     position: fixed;
     inset: 0;
-    background: rgba(36, 31, 33, 0.88);
-    display: flex;
-    align-items: center;
-    justify-content: center;
     z-index: 200;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.25s ease;
-    padding: 5vh 5vw;
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    background: rgba(239, 230, 210, 0.85);
+    backdrop-filter: blur(20px) saturate(1.1);
+    -webkit-backdrop-filter: blur(20px) saturate(1.1);
+    display: grid;
+    grid-template-rows: 1fr auto;
+    align-items: end;
+    justify-items: center;
+    padding: 6vh 6vw 4vh;
+    gap: 32px;
   }
   .portrait-lightbox.is-open {
     opacity: 1;
     pointer-events: auto;
   }
+  .pl-stage {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
   .portrait-lightbox img {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-    transform: scale(0.96);
-    transition: transform 0.3s ease;
+    transform: scale(0.94) translateY(8px);
+    opacity: 0;
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+    box-shadow: 0 30px 80px -20px rgba(36, 31, 33, 0.35);
   }
-  .portrait-lightbox.is-open img { transform: scale(1); }
-  .portrait-lightbox .pl-close {
-    position: absolute;
-    top: 24px; right: 24px;
-    color: var(--cream);
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: .25em;
+  .portrait-lightbox.is-open img {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+  .pl-caption {
+    text-align: center;
+    color: var(--ink);
+    transform: translateY(12px);
+    opacity: 0;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s, opacity 0.5s ease 0.1s;
+  }
+  .portrait-lightbox.is-open .pl-caption {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  .pl-caption .pl-name {
+    font-family: var(--display);
+    font-size: clamp(20px, 2.4vw, 32px);
+    line-height: 1;
+    letter-spacing: -.01em;
     text-transform: uppercase;
-    opacity: .7;
-    background: none; border: 1px solid currentColor; border-radius: 999px;
-    padding: 8px 16px;
-    cursor: pointer;
+    margin: 0;
   }
-  .portrait-lightbox .pl-close:hover { opacity: 1; }
+  .pl-caption .pl-role {
+    font-family: var(--mono);
+    font-style: italic;
+    font-size: clamp(12px, 1.1vw, 14px);
+    margin: 8px 0 0;
+    opacity: .65;
+  }
+  .pl-hint {
+    position: absolute;
+    bottom: 18px; left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--ink);
+    opacity: .35;
+    pointer-events: none;
+  }
 
   /* —— Per-character portrait overrides —— */
   /* #07 cops: cover, anchor top so both partners visible */
@@ -1435,62 +1473,83 @@
   window.addEventListener('resize', onScroll);
   updateParallax();
 
-  // portrait hover-to-expand lightbox
+  // portrait expander — editorial hover overlay
   (function() {
     var lightbox = document.createElement('div');
     lightbox.className = 'portrait-lightbox';
     lightbox.setAttribute('aria-hidden', 'true');
-    lightbox.innerHTML = '<button class="pl-close" aria-label="Close">Close ✕</button><img alt="" />';
+    lightbox.innerHTML =
+      '<div class="pl-stage"><img alt="" /></div>' +
+      '<div class="pl-caption"><h3 class="pl-name"></h3><p class="pl-role"></p></div>' +
+      '<div class="pl-hint">Move cursor away to close</div>';
     document.body.appendChild(lightbox);
 
     var lbImg = lightbox.querySelector('img');
-    var lbClose = lightbox.querySelector('.pl-close');
+    var lbName = lightbox.querySelector('.pl-name');
+    var lbRole = lightbox.querySelector('.pl-role');
     var hoverTimer = null;
+    var isOpen = false;
     var isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 
-    function open(src) {
+    function open(src, name, role) {
       lbImg.src = src;
+      lbName.textContent = name;
+      lbRole.textContent = role;
+      lbRole.style.display = role ? '' : 'none';
       lightbox.classList.add('is-open');
       lightbox.setAttribute('aria-hidden', 'false');
+      isOpen = true;
     }
     function close() {
       lightbox.classList.remove('is-open');
       lightbox.setAttribute('aria-hidden', 'true');
+      isOpen = false;
     }
 
     document.querySelectorAll('.character-grid .portrait').forEach(function(p) {
       var img = p.querySelector('img');
       if (!img) return;
+      var section = p.closest('.character-section');
+      var name = section ? section.querySelector('h2').innerText.replace(/\n/g, ' ') : '';
+      var role = section && section.querySelector('.role') ? section.querySelector('.role').innerText : '';
 
       if (isTouch) {
-        // tap to toggle on touch devices
         p.addEventListener('click', function(e) {
           e.preventDefault();
-          open(img.currentSrc || img.src);
+          open(img.currentSrc || img.src, name, role);
         });
       } else {
-        // hover with short delay to avoid accidental triggers
         p.addEventListener('mouseenter', function() {
           clearTimeout(hoverTimer);
-          hoverTimer = setTimeout(function() { open(img.currentSrc || img.src); }, 180);
+          hoverTimer = setTimeout(function() {
+            open(img.currentSrc || img.src, name, role);
+          }, 140);
         });
         p.addEventListener('mouseleave', function() {
           clearTimeout(hoverTimer);
         });
-        // click also works
-        p.addEventListener('click', function() { open(img.currentSrc || img.src); });
       }
     });
 
-    lightbox.addEventListener('click', function(e) {
-      if (e.target === lightbox || e.target === lbClose) close();
-    });
-    // auto-close when mouse leaves the expanded image (desktop only)
+    // Desktop: close when mouse moves outside the expanded image bounds
     if (!isTouch) {
-      lbImg.addEventListener('mouseleave', close);
+      document.addEventListener('mousemove', function(e) {
+        if (!isOpen) return;
+        var r = lbImg.getBoundingClientRect();
+        var pad = 40; // forgiving hit area around the image
+        if (e.clientX < r.left - pad || e.clientX > r.right + pad ||
+            e.clientY < r.top - pad || e.clientY > r.bottom + pad) {
+          close();
+        }
+      });
+    }
+
+    // Touch: tap anywhere to close
+    if (isTouch) {
+      lightbox.addEventListener('click', close);
     }
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') close();
+      if (e.key === 'Escape' && isOpen) close();
     });
   })();
 </script>

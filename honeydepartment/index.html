@@ -1,0 +1,1408 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Honey Department — Campaign Selects, Fall 2026</title>
+<meta name="description" content="Campaign Selects — Fall 2026." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --cream:    #efe6d2;
+    --muted-1:  #c9a527;
+    --muted-2:  #f5db54;
+    --ink:      #241f21;
+
+    --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    --display: 'Alfa Slab One', 'Cooper Black', Georgia, serif;
+
+    --t-display-xl: clamp(64px, 11vw, 168px);
+    --t-display-l:  clamp(40px, 7vw, 96px);
+    --t-display-m:  clamp(28px, 4vw, 56px);
+    --t-body:       15px;
+    --t-label:      11px;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--mono);
+    color: var(--ink);
+    background: var(--cream);
+    font-size: var(--t-body);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+  a { color: inherit; }
+  img { display: block; max-width: 100%; }
+
+  /* nav */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 28px;
+    font-family: var(--mono);
+    font-size: var(--t-label); letter-spacing: .12em; text-transform: uppercase;
+    z-index: 100;
+    background: var(--cream);
+    border-bottom: 1px solid rgba(36, 31, 33, 0.08);
+    color: var(--ink);
+  }
+  .nav .left, .nav .right { display: inline-flex; align-items: center; }
+  .nav a { text-decoration: none; opacity: .85; }
+  .nav a:hover { opacity: 1; }
+  .nav .dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--muted-1); margin-right: 8px; vertical-align: middle; }
+
+  /* sections */
+  section {
+    position: relative;
+    padding: 80px 6vw;
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+  }
+  section.cream { background: var(--cream); color: var(--ink); }
+  section.deep  { background: var(--muted-2); color: var(--ink); }
+  section.no-min { min-height: 0; }
+  section.has-divider-top { padding-top: 160px; }
+
+  .tag {
+    display: inline-block;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    padding: 6px 16px;
+    font-family: var(--mono);
+    font-size: var(--t-label); letter-spacing: .14em; text-transform: uppercase;
+    margin-bottom: 32px;
+    align-self: flex-start;
+    position: relative; z-index: 2;
+  }
+
+  .footer-mark {
+    position: absolute;
+    left: 6vw; bottom: 32px;
+    font-family: var(--display);
+    font-size: var(--t-label); letter-spacing: .04em;
+    z-index: 5;
+  }
+  .footer-mark.right { left: auto; right: 6vw; }
+
+  /* wave divider */
+  .wave-divider {
+    position: absolute;
+    left: -2%; right: -2%;
+    width: 104%;
+    height: 220px;
+    pointer-events: none;
+    z-index: 1;
+    will-change: transform;
+  }
+  .wave-divider.top    { top: -40px; }
+  .wave-divider.bottom { bottom: -40px; }
+  .wave-divider svg { display: block; width: 100%; height: 100%; overflow: visible; }
+
+  /* hero — cover */
+  .hero {
+    min-height: 100vh;
+    padding: 0 6vw;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: var(--cream);
+  }
+  .hero-content { position: relative; z-index: 3; max-width: 100%; }
+  .hero h1 {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: var(--t-display-xl);
+    line-height: .85; letter-spacing: -.015em;
+    margin: 0; color: var(--ink);
+  }
+  .hero .sub {
+    margin-top: 56px;
+    font-family: var(--mono);
+    font-size: var(--t-label); letter-spacing: .25em; text-transform: uppercase;
+  }
+  .hero .scroll-cue {
+    position: absolute;
+    bottom: 32px; left: 50%; transform: translateX(-50%);
+    font-family: var(--mono);
+    font-size: 10px; letter-spacing: .3em; text-transform: uppercase;
+    opacity: .6;
+    animation: bob 2.4s ease-in-out infinite;
+    z-index: 5;
+  }
+  @keyframes bob {
+    0%,100% { transform: translate(-50%, 0); }
+    50%     { transform: translate(-50%, 6px); }
+  }
+
+  /* intro section */
+  .intro-section {
+    background: var(--cream);
+    padding: 80px 6vw 40px;
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+  }
+  .intro-section h2 {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: var(--t-display-xl);
+    line-height: .88; letter-spacing: -.015em;
+    margin: 0 0 56px;
+    text-transform: uppercase;
+  }
+  .intro-section .intro-body {
+    max-width: 56ch;
+    font-size: var(--t-body); line-height: 1.7;
+  }
+  .intro-section .intro-body p { margin: 0 0 22px; }
+
+  /* chapter */
+  .chapter {
+    align-items: flex-start; justify-content: center;
+    padding: 140px 6vw 80px;
+    position: relative;
+    background: var(--muted-2);
+    color: var(--ink);
+    min-height: auto;
+  }
+  .chapter .num-row { display: flex; flex-direction: column; gap: 18px; position: relative; z-index: 3; }
+  .chapter .label {
+    font-family: var(--mono);
+    font-size: var(--t-label); letter-spacing: .25em; text-transform: uppercase;
+  }
+  .chapter h2 {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: var(--t-display-xl);
+    line-height: .88; letter-spacing: -.015em;
+    margin: 0; text-transform: uppercase;
+    color: var(--ink);
+    max-width: 14ch;
+  }
+
+  /* two col body */
+  .two-col {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 6vw; align-items: start;
+    position: relative; z-index: 2;
+  }
+  .col-text h3 {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: var(--t-display-m);
+    line-height: .95; letter-spacing: -.005em;
+    text-transform: uppercase;
+    margin: 0 0 24px;
+  }
+  .col-text h4 {
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: var(--t-label);
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    margin: 0 0 16px;
+  }
+  .col-text p {
+    font-family: var(--mono); font-size: var(--t-body); line-height: 1.65;
+    margin: 0 0 18px; max-width: 56ch;
+  }
+  .col-text ul { list-style: none; padding: 0; margin: 0;
+    font-family: var(--mono); font-size: var(--t-body); line-height: 1.7; }
+  .col-text ul li { padding-left: 20px; position: relative; margin-bottom: 6px; }
+  .col-text ul li::before { content: '—'; position: absolute; left: 0; }
+
+  /* film breakdown */
+  .film-section { padding: 140px 6vw 80px; position: relative; background: var(--cream); }
+  .film-header { position: relative; z-index: 2; margin-bottom: 56px; max-width: 90vw; }
+  .film-header .tag { margin-bottom: 24px; }
+  .film-header h2 {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: var(--t-display-xl);
+    line-height: .88; letter-spacing: -.015em;
+    margin: 0; text-transform: uppercase;
+    color: var(--ink);
+  }
+  .film-header .logline {
+    margin: 20px 0 0;
+    font-family: var(--mono);
+    font-style: italic;
+    font-size: clamp(16px, 1.5vw, 22px);
+    line-height: 1.4;
+    max-width: 60ch;
+    opacity: .8;
+  }
+
+  /* 2x2 reference grid */
+  .ref-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 0 0 72px;
+    position: relative; z-index: 2;
+  }
+  .ref-grid .frame { aspect-ratio: 16 / 10; }
+
+  /* generic frame */
+  .frame {
+    position: relative; overflow: hidden;
+    background: var(--ink); color: var(--cream);
+    aspect-ratio: 16 / 10;
+    will-change: transform;
+  }
+  .frame img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center;
+    display: block;
+    transition: transform .8s ease;
+    /* lock the moodboard to black & white */
+    filter: grayscale(1) contrast(1.04);
+  }
+  .frame.zoom img:hover { transform: scale(1.04); }
+
+  /* —— character sections —— */
+  .cast-intro {
+    background: var(--muted-2);
+    color: var(--ink);
+    padding: 140px 6vw 80px;
+    min-height: auto;
+    position: relative;
+    display: flex; flex-direction: column; justify-content: center;
+    overflow: hidden;
+  }
+  .cast-intro .label {
+    font-family: var(--mono);
+    font-size: var(--t-label);
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    display: block;
+    position: relative; z-index: 2;
+  }
+  .cast-intro h2 {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: var(--t-display-xl);
+    line-height: .88;
+    letter-spacing: -.015em;
+    margin: 0 0 32px;
+    text-transform: uppercase;
+    position: relative; z-index: 2;
+  }
+  .cast-intro p {
+    font-family: var(--mono);
+    font-size: var(--t-body);
+    line-height: 1.65;
+    max-width: 56ch;
+    margin: 0;
+    position: relative; z-index: 2;
+  }
+
+  .character-section {
+    padding: 72px 6vw;
+    position: relative;
+    background: var(--cream);
+    min-height: auto;
+    overflow: hidden;
+  }
+  .character-section.has-divider-top { padding-top: 160px; }
+
+  .character-header { margin-bottom: 48px; position: relative; z-index: 2; }
+  .character-header .tag { margin-bottom: 24px; }
+  .character-header h2 {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: var(--t-display-xl);
+    line-height: .88;
+    letter-spacing: -.015em;
+    margin: 0;
+    text-transform: uppercase;
+  }
+  .character-header .role {
+    font-family: var(--mono);
+    font-style: italic;
+    font-size: clamp(15px, 1.3vw, 20px);
+    margin: 16px 0 0;
+    opacity: .75;
+    max-width: 60ch;
+  }
+
+  .character-grid {
+    display: grid;
+    grid-template-columns: 5fr 6fr;
+    gap: 5vw;
+    align-items: start;
+    margin-bottom: 48px;
+    position: relative; z-index: 2;
+  }
+  .character-grid .portrait {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: var(--ink);
+  }
+  .character-grid .portrait img {
+    width: 100%; height: 100%;
+    object-fit: cover;            /* fill the frame, crop as needed */
+    object-position: 50% 35%;     /* bias toward upper area so faces land in frame */
+    filter: grayscale(1) contrast(1.04);
+    display: block;
+  }
+
+  /* —— Per-character portrait overrides —— */
+  /* #07 cops: cover, anchor top so both partners visible */
+  #character-07 .portrait img { object-fit: cover; object-position: center top; }
+
+  /* #09 Devon: subject sits left — anchor right side of frame */
+  #character-09 .portrait img { object-position: 75% 40%; }
+
+  /* #10 Wesley: subject sits right — anchor left side of frame */
+  #character-10 .portrait img { object-position: 20% 40%; }
+
+  /* #11 Pemwa: cover with slight crop, align top */
+  #character-11 .portrait { background: var(--cream); }
+  #character-11 .portrait img { object-fit: cover; object-position: center top; }
+
+  /* #12 Sammy: cover with slight crop, align top */
+  #character-12 .portrait { background: var(--cream); }
+  #character-12 .portrait img { object-fit: cover; object-position: center top; }
+
+  /* #13 Jake: cover, anchor top */
+  #character-13 .portrait img { object-fit: cover; object-position: center top; }
+
+  /* #14 Williamsons: cover, anchor top */
+  #character-14 .portrait img { object-fit: cover; object-position: center top; }
+  .character-grid .bio h4 {
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: var(--t-label);
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    margin: 0 0 18px;
+  }
+  .character-grid .bio p {
+    font-family: var(--mono);
+    font-size: var(--t-body);
+    line-height: 1.65;
+    margin: 0 0 16px;
+    max-width: 50ch;
+  }
+  /* dating-profile field list */
+  .dating-profile {
+    margin: 28px 0 0;
+    padding: 24px 0 0;
+    border-top: 1px solid rgba(36, 31, 33, 0.15);
+    font-family: var(--mono);
+  }
+  .dating-profile dt {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    margin: 14px 0 4px;
+    opacity: .55;
+  }
+  .dating-profile dt:first-child { margin-top: 0; }
+  .dating-profile dd {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.55;
+    max-width: 50ch;
+  }
+
+  .synopses {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5vw;
+    border-top: 1px solid rgba(36, 31, 33, 0.15);
+    padding-top: 40px;
+    position: relative; z-index: 2;
+  }
+  .synopsis h4 {
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: var(--t-label);
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    margin: 0 0 18px;
+  }
+  .synopsis p {
+    font-family: var(--mono);
+    font-size: var(--t-body);
+    line-height: 1.65;
+    margin: 0;
+    max-width: 48ch;
+  }
+
+  /* —— desktop only: 3-column character pages so each fits in one viewport —— */
+  @media (min-width: 1024px) {
+    .character-section {
+      display: grid;
+      grid-template-areas:
+        "header   header header"
+        "portrait bio    synopses";
+      grid-template-columns: 6fr 5fr 4fr;
+      grid-template-rows: auto auto;
+      column-gap: 4vw;
+      row-gap: 36px;
+      align-items: start;
+      align-content: start;
+      min-height: 100vh;
+      padding: 110px 6vw 64px;
+    }
+    .character-section.has-divider-top { padding-top: 200px; }
+
+    .character-header { grid-area: header; margin-bottom: 0; }
+    .character-header h2 { font-size: clamp(40px, 5.4vw, 84px); }
+    .character-header .role { font-size: 15px; }
+
+    .character-grid { display: contents; }
+    .character-grid .portrait { grid-area: portrait; aspect-ratio: 4/5; }
+    .character-grid .bio { grid-area: bio; }
+    .character-grid .bio h4 { margin-bottom: 14px; }
+    .character-grid .bio p {
+      font-size: 13px;
+      line-height: 1.55;
+      margin-bottom: 12px;
+    }
+
+    .dating-profile { margin-top: 20px; padding-top: 18px; }
+    .dating-profile dt { margin-top: 10px; font-size: 9px; }
+    .dating-profile dd { font-size: 13px; line-height: 1.5; }
+
+    .synopses {
+      grid-area: synopses;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      border-top: none;
+      padding-top: 0;
+      grid-template-columns: none;
+    }
+    .synopsis h4 { margin-bottom: 12px; }
+    .synopsis p { font-size: 13px; line-height: 1.55; max-width: none; }
+  }
+
+  /* horizontal marquee */
+  .strip-section {
+    padding: 0; min-height: 0; overflow: hidden;
+    background: var(--muted-2);
+    position: relative;
+  }
+  .strip { display: flex; gap: 0; width: max-content; will-change: transform; padding: 60px 0; }
+  .strip .frame { width: 28vw; height: 32vh; flex-shrink: 0; aspect-ratio: auto; }
+  .strip-section.scroll-driven .strip { animation: marquee 60s linear infinite; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* closing */
+  .closing {
+    text-align: center;
+    align-items: center; justify-content: center;
+    background: var(--cream); color: var(--ink);
+    position: relative;
+    padding-top: 160px;
+  }
+  .closing .mark {
+    font-family: var(--display);
+    font-size: var(--t-display-xl);
+    line-height: .88; letter-spacing: -.015em;
+    margin: 0;
+    position: relative; z-index: 3;
+  }
+  .closing .signoff {
+    margin-top: 56px;
+    font-family: var(--mono); font-size: var(--t-body);
+    line-height: 1.8;
+    position: relative; z-index: 3;
+  }
+  .closing .signoff a { color: inherit; text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 1px; }
+  .closing .credit {
+    margin-top: 56px;
+    font-family: var(--mono);
+    font-size: var(--t-label); letter-spacing: .25em; text-transform: uppercase;
+    opacity: .6;
+    position: relative; z-index: 3;
+  }
+
+  /* reveal */
+  .reveal { opacity: 0; transition: opacity 1s ease; }
+  .reveal.in { opacity: 1; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transition: none; }
+    [data-parallax] { transform: none !important; }
+    html { scroll-behavior: auto; }
+    .scroll-cue, .strip-section.scroll-driven .strip { animation: none; }
+  }
+
+  /* —————— mobile (≤ 860px) —————— */
+  @media (max-width: 860px) {
+    /* shrink the display scale so words don't blow past the viewport */
+    :root {
+      --t-display-xl: clamp(38px, 10vw, 88px);
+      --t-display-l:  clamp(28px, 7vw, 56px);
+      --t-display-m:  clamp(22px, 5vw, 36px);
+    }
+
+    /* base section: tight by default. Wave-clearance only when needed. */
+    section { padding: 48px 6vw; min-height: auto; }
+    section.has-divider-top { padding-top: 100px; }
+
+    /* chapter cards: short, content-driven height */
+    .chapter { padding: 48px 6vw; min-height: auto; }
+    .chapter.has-divider-top { padding-top: 100px; }
+    .chapter h2 { max-width: none; }
+
+    /* film breakdown sections: only the first one (with divider) needs extra top */
+    .film-section { padding: 48px 6vw; }
+    .film-section.has-divider-top { padding-top: 100px; }
+    .film-header { margin-bottom: 32px; }
+    .film-header .logline { font-size: 14px; line-height: 1.5; }
+
+    .intro-section { padding: 64px 6vw 48px; min-height: auto; }
+    .intro-section h2 { margin-bottom: 24px; }
+    .intro-section .intro-body { font-size: 14px; }
+
+    .hero-content { padding: 0 4vw; }
+    .hero h1 { line-height: .9; }
+
+    .closing { padding-top: 100px; padding-bottom: 64px; }
+    .closing .signoff { font-size: 14px; margin-top: 40px; }
+
+    .two-col { grid-template-columns: 1fr; gap: 32px; }
+    .col-text h3 { margin-bottom: 16px; }
+    .col-text p { font-size: 14px; }
+    .col-text ul { font-size: 14px; }
+
+    .ref-grid { grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 32px; }
+
+    /* nav */
+    .nav { padding: 12px 16px; font-size: 10px; letter-spacing: .08em; }
+    .nav a { white-space: nowrap; }
+    .nav .right { font-size: 9px; }
+
+    .tag { font-size: 10px; padding: 5px 12px; margin-bottom: 24px; }
+    .footer-mark { font-size: 9px; bottom: 20px; }
+
+    /* strip section — keep it compact, let the imagery dominate not empty yellow */
+    .strip-section { padding-top: 56px !important; padding-bottom: 0; }
+    .strip { padding: 12px 0; }
+    .strip .frame { width: 68vw; height: 26vh; }
+
+    .wave-divider { height: 120px; }
+    .wave-divider.top { top: -24px; }
+
+    /* parallax on touch is jittery — disable Y-translate on mobile */
+    [data-parallax] { transform: none !important; }
+
+    /* character sections */
+    .cast-intro { padding: 80px 6vw 48px; min-height: auto; }
+    .character-section { padding: 48px 6vw; }
+    .character-section.has-divider-top { padding-top: 100px; }
+    .character-header { margin-bottom: 32px; }
+    .character-header .role { font-size: 14px; }
+    .character-grid { grid-template-columns: 1fr; gap: 24px; margin-bottom: 32px; }
+    .character-grid .portrait { aspect-ratio: 4 / 5; max-width: 480px; }
+    .synopses { grid-template-columns: 1fr; gap: 24px; padding-top: 32px; }
+    .synopsis p { font-size: 14px; }
+  }
+
+  /* —————— very small phones (≤ 380px) —————— */
+  @media (max-width: 380px) {
+    :root { --t-display-xl: clamp(34px, 11vw, 56px); }
+    section { padding: 48px 5vw; }
+    .chapter { padding: 48px 5vw; }
+    .chapter.has-divider-top { padding-top: 100px; }
+    .film-section { padding: 48px 5vw; }
+    .film-section.has-divider-top { padding-top: 100px; }
+    .ref-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- WAVE TEMPLATES -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="wd-down" viewBox="0 0 1440 220" preserveAspectRatio="none">
+      <path d="M0,110 C360,55 720,165 1080,110 C1260,82 1380,138 1440,110 L1440,-200 L0,-200 Z" fill="var(--cream)"/>
+      <path d="M0,94 C360,39 720,149 1080,94 C1260,66 1380,122 1440,94"
+            stroke="var(--muted-1)" stroke-width="9" fill="none" vector-effect="non-scaling-stroke"/>
+      <path d="M0,78 C360,23 720,133 1080,78 C1260,50 1380,106 1440,78"
+            stroke="var(--muted-1)" stroke-width="7" fill="none" opacity="0.55" vector-effect="non-scaling-stroke"/>
+    </symbol>
+    <symbol id="wd-up" viewBox="0 0 1440 220" preserveAspectRatio="none">
+      <path d="M0,110 C360,55 720,165 1080,110 C1260,82 1380,138 1440,110 L1440,-200 L0,-200 Z" fill="var(--muted-2)"/>
+      <path d="M0,126 C360,71 720,181 1080,126 C1260,98 1380,154 1440,126"
+            stroke="var(--muted-1)" stroke-width="9" fill="none" vector-effect="non-scaling-stroke"/>
+      <path d="M0,142 C360,87 720,197 1080,142 C1260,114 1380,170 1440,142"
+            stroke="var(--muted-1)" stroke-width="7" fill="none" opacity="0.55" vector-effect="non-scaling-stroke"/>
+    </symbol>
+  </defs>
+</svg>
+
+<nav class="nav" aria-label="primary">
+  <div class="left"><span class="dot"></span><a href="#top">Honey Department<span class="sdk-tail"> × Studio SDK</span></a></div>
+  <div class="right"><a href="#thanks">Fall 2026</a></div>
+</nav>
+
+<!-- COVER -->
+<section id="top" class="hero">
+  <div class="hero-content">
+    <h1 class="reveal">HONEY<br/>DEPARTMENT</h1>
+    <div class="sub reveal">Campaign Selects — Fall 2026</div>
+  </div>
+  <div class="scroll-cue">Scroll ↓</div>
+  <div class="footer-mark right" style="font-family: var(--display);">HONEY DEPARTMENT</div>
+</section>
+
+<!-- 01 INTRO -->
+<section class="intro-section" id="intro">
+  <span class="tag">01 · Hello</span>
+  <h2 class="reveal">Hello.</h2>
+  <div class="intro-body reveal">
+    <p>I'm Carlton Lorenz.</p>
+    <p>When the Honey Department brief landed, I read it twice and immediately wanted in. The references — Andersson, Owens, Parr, Errol Morris — are the references. The premise is the kind we'd write for ourselves on a good day.</p>
+    <p>This deck is how we'd make it. Two films, fourteen characters, one tone, plenty of room for honey to just be in the room.</p>
+  </div>
+</section>
+
+<!-- INTRO STRIP — images/intro-strip/ (6 slots) -->
+<section class="strip-section scroll-driven no-min cream" style="padding-top: 32px;">
+  <div class="strip">
+    <div class="frame"><img src="images/intro-strip/01.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-is-1/1200/750?grayscale'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/intro-strip/02.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-is-2/1200/750?grayscale'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/intro-strip/03.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-is-3/1200/750?grayscale'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/intro-strip/04.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-is-4/1200/750?grayscale'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/intro-strip/05.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-is-5/1200/750?grayscale'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/intro-strip/06.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-is-6/1200/750?grayscale'" alt="" loading="lazy" /></div>
+    <!-- duplicate for seamless loop -->
+    <div class="frame"><img src="images/intro-strip/01.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-is-1/1200/750?grayscale'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/intro-strip/02.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-is-2/1200/750?grayscale'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/intro-strip/03.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-is-3/1200/750?grayscale'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/intro-strip/04.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-is-4/1200/750?grayscale'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/intro-strip/05.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-is-5/1200/750?grayscale'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/intro-strip/06.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-is-6/1200/750?grayscale'" alt="" loading="lazy" /></div>
+  </div>
+</section>
+
+<!-- 02 APPROACH -->
+<section class="chapter has-divider-top" id="approach-chapter">
+  <div class="wave-divider top" data-parallax="0.04"><svg><use href="#wd-down"/></svg></div>
+  <div class="num-row reveal">
+    <div class="label">Chapter 01</div>
+    <h2>Approach<br/>&amp; Tone</h2>
+  </div>
+</section>
+
+<section class="cream has-divider-top">
+  <div class="wave-divider top" data-parallax="0.04"><svg><use href="#wd-up"/></svg></div>
+  <span class="tag">02 · The Tone</span>
+  <div class="two-col">
+    <div class="col-text reveal">
+      <h3>Nobody Is The Punchline.</h3>
+      <p>Everything in this campaign rises or falls on tone. The reference filmmakers — Andersson, Owens, Parr, Morris, Tati — share one rule. The humor never comes at the subject's expense.</p>
+      <p>Comedy here is comedy by noticing. We hold the frame one beat past comfortable. We let the room talk. The honey is a guest in the shot, not the point of the shot. The eater is the eater. The honey is just what they happen to be eating.</p>
+      <p>Done well, the films feel like documentaries that happen to have a brand in them. Done poorly, they feel like ads with a quirk filter. We know the difference.</p>
+    </div>
+    <div class="col-text reveal">
+      <h4>Working Rules</h4>
+      <ul>
+        <li>Observational, never satirical</li>
+        <li>Deadpan tempo over comic timing</li>
+        <li>Specificity beats scale every time</li>
+        <li>Honey is present, never celebrated</li>
+        <li>Real people when we can find them</li>
+        <li>Real environments, real light</li>
+        <li>Wide before close. Always.</li>
+        <li>The cut should arrive late</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 02: THE CAST -->
+<section class="cast-intro has-divider-top" id="cast-chapter">
+  <div class="wave-divider top" data-parallax="0.04"><svg><use href="#wd-down"/></svg></div>
+  <span class="label reveal">Chapter 02</span>
+  <h2 class="reveal">The Cast</h2>
+  <p class="reveal">Fourteen specific people. The films don't keep inventing new characters — they follow these. Each one shows up across the campaign, doing what they do, eating what they eat.</p>
+</section>
+
+<!-- CHARACTER 01 — GENERAL GREAVES -->
+<section class="character-section has-divider-top" id="character-01">
+  <div class="wave-divider top" data-parallax="0.04"><svg><use href="#wd-up"/></svg></div>
+  <div class="character-header reveal">
+    <span class="tag">Character 01 / 14</span>
+    <h2>Maurice<br/>Greeves</h2>
+    <p class="role">US Army Commander</p>
+  </div>
+  <div class="character-grid reveal">
+    <div class="portrait"><img src="images/character-01-army-general/portrait.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-ch-01/800/1000?grayscale'" alt="" loading="lazy" /></div>
+    <div class="bio">
+      <h4>Bio</h4>
+      <p>35-year career. Two combat tours. A chest you can read. Spends Sunday afternoons assembling scale model trains with a pair of tweezers. Hasn't said "I love you" out loud since the early Reagan administration.</p>
+      <dl class="dating-profile">
+        <dt>Favorite Song</dt><dd>Nickelback — "Rockstar"</dd>
+        <dt>Hobbies</dt><dd>Chinups, chewing tobacco, and yelling.</dd>
+        <dt>Perfect Date</dt><dd>Hotdogs on the grill in his backyard without his wife.</dd>
+        <dt>Bucketlist</dt><dd>Be the little spoon. Have someone say I love you.</dd>
+      </dl>
+    </div>
+  </div>
+  <div class="synopses reveal">
+    <div class="synopsis">
+      <h4>In "Eat It Anywhere"</h4>
+      <p>Greeves dismisses a lieutenant with a strong "get out," waits for the latch to click, and releases a smile no outside observer has ever seen. He squeezes a Honey Dept. into his mouth with the giddiness of a six-year-old opening a present.</p>
+    </div>
+    <div class="synopsis">
+      <h4>In "Goes With Anything"</h4>
+      <p>Goes with overcompensating with authority.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CHARACTER 02 — CORIANDER WEXLER-PIKE -->
+<section class="character-section" id="character-02">
+  <div class="character-header reveal">
+    <span class="tag">Character 02 / 14</span>
+    <h2>Coriander<br/>Wexler-Pike</h2>
+    <p class="role">Professional dog walker</p>
+  </div>
+  <div class="character-grid reveal">
+    <div class="portrait"><img src="images/character-02-dog-walker/portrait.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-ch-02/800/1000?grayscale'" alt="" loading="lazy" /></div>
+    <div class="bio">
+      <h4>Bio</h4>
+      <p>31. Charges $400 per walk. Twelve dogs in her standing rotation. Bangs cut by a stylist who flies in from Milan. Calls every dog by its owner's last name. Owns no dogs.</p>
+      <dl class="dating-profile">
+        <dt>Favorite Song</dt><dd>Katy Perry — "California Gurls"</dd>
+        <dt>Hobbies</dt><dd>Spa day, groupchats, and Pilates.</dd>
+        <dt>Perfect Date</dt><dd>Somewhere expensive and the guy pays.</dd>
+        <dt>Bucketlist</dt><dd>Go to the Met Gala.</dd>
+      </dl>
+    </div>
+  </div>
+  <div class="synopses reveal">
+    <div class="synopsis">
+      <h4>In "Eat It Anywhere"</h4>
+      <p>Cory carves down a sunny LA street at a 7-minute mile pace, 11 dogs in formation, sunglasses on at 8am. She is the star of her own world — like walking down a Paris fashion week runway. <em>Slow motion.</em> She pulls out a Honey Dept. and squeezes it into her mouth without breaking pace, eye contact, or expression.</p>
+    </div>
+    <div class="synopsis">
+      <h4>In "Goes With Anything"</h4>
+      <p>Goes with delusionally being the main character.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CHARACTER 03 — LINWOOD EARHARDT -->
+<section class="character-section" id="character-03">
+  <div class="character-header reveal">
+    <span class="tag">Character 03 / 14</span>
+    <h2>Linwood<br/>Earhart</h2>
+    <p class="role">Beekeeper</p>
+  </div>
+  <div class="character-grid reveal">
+    <div class="portrait"><img src="images/character-03-bee-keeper/portrait.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-ch-03/800/1000?grayscale'" alt="" loading="lazy" /></div>
+    <div class="bio">
+      <h4>Bio</h4>
+      <p>42 years old. Eleven thousand career stings. Names every queen after a vintage car. Drinks one Schlitz a night. Hasn't been to a movie theater since 1979 but reads every review in the Sunday paper.</p>
+      <dl class="dating-profile">
+        <dt>Favorite Song</dt><dd>AC/DC — "T.N.T."</dd>
+        <dt>Hobbies</dt><dd>The royal family and infomercials.</dd>
+        <dt>Perfect Date</dt><dd>Bowling.</dd>
+        <dt>Bucketlist</dt><dd>Go on an airplane.</dd>
+      </dl>
+    </div>
+  </div>
+  <div class="synopses reveal">
+    <div class="synopsis">
+      <h4>In "Eat It Anywhere"</h4>
+      <p>Linwood collapses into a folding chair, exhausted from a long day's work. He peels off the mesh helmet and squeezes a Honey Dept. into his mouth while ten thousand of his own bees swarm frantically somewhere just out of frame. He doesn't flinch.</p>
+    </div>
+    <div class="synopsis">
+      <h4>In "Goes With Anything"</h4>
+      <p>Goes with getting high off your own supply.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CHARACTER 04 — ROMAN GARAFALO -->
+<section class="character-section" id="character-04">
+  <div class="character-header reveal">
+    <span class="tag">Character 04 / 14</span>
+    <h2>Roman<br/>Garafalo</h2>
+    <p class="role">Bodybuilder</p>
+  </div>
+  <div class="character-grid reveal">
+    <div class="portrait"><img src="images/character-04-body-builder/portrait.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-ch-04/800/1000?grayscale'" alt="" loading="lazy" /></div>
+    <div class="bio">
+      <h4>Bio</h4>
+      <p>44. Lives at home. Owns fourteen cut-off sweat suits, all gray, all from 1991–1994. Calls his mother at 4pm every day to find out what's for dinner. Tells everyone his bench max before his name.</p>
+      <dl class="dating-profile">
+        <dt>Favorite Song</dt><dd>Slipknot — "Wait and Bleed"</dd>
+        <dt>Hobbies</dt><dd>Looking in the mirror.</dd>
+        <dt>Perfect Date</dt><dd>Chest day.</dd>
+        <dt>Bucketlist</dt><dd>Meet Arnold Schwarzenegger.</dd>
+      </dl>
+    </div>
+  </div>
+  <div class="synopses reveal">
+    <div class="synopsis">
+      <h4>In "Eat It Anywhere"</h4>
+      <p>Frank and Richard are mid-donut in their cruiser when Frank produces a Honey Dept. from his pocket and drizzles a slow, careful zigzag across his jelly-filled donut. We hear on their intercom "Paging cruiser 3150, hello cruiser 3150?" They look at each other and turn down the volume as Frank honeys Richard's donut.</p>
+    </div>
+    <div class="synopsis">
+      <h4>In "Goes With Anything"</h4>
+      <p>Goes with fragile masculinity.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CHARACTER 05 — HENRIK BJELDEVSKIJ -->
+<section class="character-section" id="character-05">
+  <div class="character-header reveal">
+    <span class="tag">Character 05 / 14</span>
+    <h2>Henrik<br/>Bjeldevskif</h2>
+    <p class="role">Cyclist</p>
+  </div>
+  <div class="character-grid reveal">
+    <div class="portrait"><img src="images/character-05-bicyclist/portrait.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-ch-05/800/1000?grayscale'" alt="" loading="lazy" /></div>
+    <div class="bio">
+      <h4>Bio</h4>
+      <p>29. Belgian-American. Four straight gran fondos in the bottom 5%. Studio apartment with more bikes than furniture and a betta fish named Doping Allegation.</p>
+      <dl class="dating-profile">
+        <dt>Favorite Song</dt><dd>The Smashing Pumpkins — "1979"</dd>
+        <dt>Hobbies</dt><dd>Watching Lance Armstrong highlights.</dd>
+        <dt>Perfect Date</dt><dd>Boozy bike ride along the coast.</dd>
+        <dt>Bucketlist</dt><dd>Finish a race in the top half without cramping.</dd>
+      </dl>
+    </div>
+  </div>
+  <div class="synopses reveal">
+    <div class="synopsis">
+      <h4>In "Eat It Anywhere"</h4>
+      <p>Frank and Richard are mid-donut in their cruiser when Frank produces a Honey Dept. from his pocket and drizzles a slow, careful zigzag across his jelly-filled donut. We hear on their intercom "Paging cruiser 3150, hello cruiser 3150?" They look at each other and turn down the volume as Frank honeys Richard's donut.</p>
+    </div>
+    <div class="synopsis">
+      <h4>In "Goes With Anything"</h4>
+      <p>Goes with not pulling anyone over. They remain in the cop car unphased as we hear a car chase happening right in front of them, off camera.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CHARACTER 06 — MARGERY BELLANCA -->
+<section class="character-section" id="character-06">
+  <div class="character-header reveal">
+    <span class="tag">Character 06 / 14</span>
+    <h2>Margery<br/>Bellanca</h2>
+    <p class="role">Bingo Player</p>
+  </div>
+  <div class="character-grid reveal">
+    <div class="portrait"><img src="images/character-06-bingo-regular/portrait.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-ch-06/800/1000?grayscale'" alt="" loading="lazy" /></div>
+    <div class="bio">
+      <h4>Bio</h4>
+      <p>81. Same seat, Tuesdays and Thursdays, for 23 years. Won $2,400 in 1987 and hasn't won since. Hasn't spoken to her sister since she beat her in bingo 15 years ago.</p>
+      <dl class="dating-profile">
+        <dt>Favorite Song</dt><dd>ABBA — "Gimme! Gimme! Gimme!"</dd>
+        <dt>Hobbies</dt><dd>Bingo and Judge Judy.</dd>
+        <dt>Perfect Date</dt><dd>Square dancing.</dd>
+        <dt>Bucketlist</dt><dd>Kiss Billy Idol.</dd>
+      </dl>
+    </div>
+  </div>
+  <div class="synopses reveal">
+    <div class="synopsis">
+      <h4>In "Eat It Anywhere"</h4>
+      <p>Frank and Richard are mid-donut in their cruiser when Frank produces a Honey Dept. from his pocket and drizzles a slow, careful zigzag across his jelly-filled donut. We hear on their intercom "Paging cruiser 3150, hello cruiser 3150?" They look at each other and turn down the volume as Frank honeys Richard's donut.</p>
+    </div>
+    <div class="synopsis">
+      <h4>In "Goes With Anything"</h4>
+      <p>Goes with not pulling anyone over. They remain in the cop car unphased as we hear a car chase happening right in front of them, off camera.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CHARACTER 07 — TEDESCO & PENCILLO -->
+<section class="character-section" id="character-07">
+  <div class="character-header reveal">
+    <span class="tag">Character 07 / 14</span>
+    <h2>Frankie &amp;<br/>Richard</h2>
+    <p class="role">Frankie Rezardo &amp; Richard Dent · Police Officers</p>
+  </div>
+  <div class="character-grid reveal">
+    <div class="portrait"><img src="images/character-07-cops/portrait.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-ch-07/800/1000?grayscale'" alt="" loading="lazy" /></div>
+    <div class="bio">
+      <h4>Bio</h4>
+      <p>Partners 19 years. Parked behind the laundromat at 6:42am every weekday. Frank does the crossword puzzles in their downtime while Richard practices his harmonica. Neither have pulled anyone over in a calendar year.</p>
+      <dl class="dating-profile">
+        <dt>Favorite Song</dt><dd>Bee Gees — "Stayin' Alive"</dd>
+        <dt>Hobbies</dt><dd>Donuts.</dd>
+        <dt>Perfect Date</dt><dd>A trip to the 24/7 donut shop.</dd>
+        <dt>Bucketlist</dt><dd>Car chase that gets their names in the local newspaper.</dd>
+      </dl>
+    </div>
+  </div>
+  <div class="synopses reveal">
+    <div class="synopsis">
+      <h4>In "Eat It Anywhere"</h4>
+      <p>Frank and Richard are mid-donut in their cruiser when Frank produces a Honey Dept. from his pocket and drizzles a slow, careful zigzag across his jelly-filled donut. We hear on their intercom "Paging cruiser 3150, hello cruiser 3150?" They look at each other and turn down the volume as Frank honeys Richard's donut.</p>
+    </div>
+    <div class="synopsis">
+      <h4>In "Goes With Anything"</h4>
+      <p>Goes with not pulling anyone over. They remain in the cop car unphased as we hear a car chase happening right in front of them, off camera.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CHARACTER 08 — STEPHANIE CIARDULLO -->
+<section class="character-section" id="character-08">
+  <div class="character-header reveal">
+    <span class="tag">Character 08 / 14</span>
+    <h2>Staphanie<br/>Ciardullo</h2>
+    <p class="role">Hairdresser</p>
+  </div>
+  <div class="character-grid reveal">
+    <div class="portrait"><img src="images/character-08-hair-dresser/portrait.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-ch-08/800/1000?grayscale'" alt="" loading="lazy" /></div>
+    <div class="bio">
+      <h4>Bio</h4>
+      <p>46. Hair stands 11 inches tall. Engaged five times to the same man, named Carl. Hasn't had a waking moment without a piece of gum in her mouth since 1978.</p>
+      <dl class="dating-profile">
+        <dt>Favorite Song</dt><dd>Bonnie Tyler — "Total Eclipse of the Heart"</dd>
+        <dt>Hobbies</dt><dd>Hairspray and soap operas.</dd>
+        <dt>Perfect Date</dt><dd>A red-booth Italian restaurant that lets you smoke cigarettes inside.</dd>
+        <dt>Bucketlist</dt><dd>Go on a Disney cruise.</dd>
+      </dl>
+    </div>
+  </div>
+  <div class="synopses reveal">
+    <div class="synopsis">
+      <h4>In "Eat It Anywhere"</h4>
+      <p>Steph is mid-blowout on a regular when she snaps her gum, mouths "hold on a dear," and slips behind the half-wall to squeeze a Honey Dept. into her mouth without disturbing a single follicle. She returns immediately with a smile and a little bit of honey on her face.</p>
+    </div>
+    <div class="synopsis">
+      <h4>In "Goes With Anything"</h4>
+      <p>Goes with one perfume forever. Getting ready in the salon (clearly her daily routine), she sprays her perfume with a Honey Dept. in the other hand to chase it with.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CHARACTER 09 — DEVON MARQUARDT -->
+<section class="character-section" id="character-09">
+  <div class="character-header reveal">
+    <span class="tag">Character 09 / 14</span>
+    <h2>Devon<br/>Lee</h2>
+    <p class="role">Boyfriend</p>
+  </div>
+  <div class="character-grid reveal">
+    <div class="portrait"><img src="images/character-09-break-up/portrait.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-ch-09/800/1000?grayscale'" alt="" loading="lazy" /></div>
+    <div class="bio">
+      <h4>Bio</h4>
+      <p>23. Has not initiated a conversation since 2019. Owns a hairless cat named Messiah.</p>
+      <dl class="dating-profile">
+        <dt>Favorite Song</dt><dd>Frank Sinatra — "The World We Knew"</dd>
+        <dt>Hobbies</dt><dd>Watching the same three episodes of <em>How I Met Your Mother</em>.</dd>
+        <dt>Perfect Date</dt><dd>Natural History Museum.</dd>
+        <dt>Bucketlist</dt><dd>See the LA Philharmonic Orchestra.</dd>
+      </dl>
+    </div>
+  </div>
+  <div class="synopses reveal">
+    <div class="synopsis">
+      <h4>In "Eat It Anywhere"</h4>
+      <p>Devon is mid dramatic breakup, sitting with a blank stare. An unfazed sounding board as his girlfriend goes on enthusiastically about his shortcomings and why this relationship isn't going to work — the entire time he can't get his eyes off the stick of Honey Dept. sitting on the table. "Are you even listening to me — hello?"</p>
+    </div>
+    <div class="synopsis">
+      <h4>In "Goes With Anything"</h4>
+      <p>Goes with checking your phone right after a loud public breakup. She walks away and tosses her water on him. Without reaction he reaches for the honey on the table, eats it, and checks his phone.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CHARACTER 10 — WESLEY COTTINGHAM -->
+<section class="character-section" id="character-10">
+  <div class="character-header reveal">
+    <span class="tag">Character 10 / 14</span>
+    <h2>Wesley<br/>Byers</h2>
+    <p class="role">Painter</p>
+  </div>
+  <div class="character-grid reveal">
+    <div class="portrait"><img src="images/character-10-painter/portrait.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-ch-10/800/1000?grayscale'" alt="" loading="lazy" /></div>
+    <div class="bio">
+      <h4>Bio</h4>
+      <p>52. Blue-collar painter. A simple man, eats lunch out of the same Igloo cooler he's owned since 1989. Watches a single coat of paint dry for the full eight-hour cure window without leaving the room. Has lived next to the same neighbor for 14 years and still doesn't know his name.</p>
+      <dl class="dating-profile">
+        <dt>Favorite Song</dt><dd>Astrud Gilberto &amp; Stan Getz — "The Girl from Ipanema"</dd>
+        <dt>Hobbies</dt><dd>Pantone colors.</dd>
+        <dt>Perfect Date</dt><dd>Watching clouds move by all day, trying to find faces and creatures hidden amongst the formations.</dd>
+        <dt>Bucketlist</dt><dd>Complete a 50,000-piece puzzle.</dd>
+      </dl>
+    </div>
+  </div>
+  <div class="synopses reveal">
+    <div class="synopsis">
+      <h4>In "Eat It Anywhere"</h4>
+      <p>Wesley sits on a beach chair in the middle of a freshly painted room — locked onto the drying wall like a man watching the final 90 seconds of an FA Cup final. He eats a Honey Dept. with the contained excitement of a fan who has waited a long time for this.</p>
+    </div>
+    <div class="synopsis">
+      <h4>In "Goes With Anything"</h4>
+      <p>Goes with watching paint dry. Wesley still sitting there in the empty room.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CHARACTER 11 — BROTHER PEMWA -->
+<section class="character-section" id="character-11">
+  <div class="character-header reveal">
+    <span class="tag">Character 11 / 14</span>
+    <h2>Pemwa<br/>Tsering</h2>
+    <p class="role">Buddhist Monk</p>
+  </div>
+  <div class="character-grid reveal">
+    <div class="portrait"><img src="images/character-11-monk/portrait.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-ch-11/800/1000?grayscale'" alt="" loading="lazy" /></div>
+    <div class="bio">
+      <h4>Bio</h4>
+      <p>35. Ordained at 28. Has not spoken on a telephone in thirteen years.</p>
+      <dl class="dating-profile">
+        <dt>Favorite Song</dt><dd>N/A</dd>
+        <dt>Hobbies</dt><dd>Meditating.</dd>
+        <dt>Perfect Date</dt><dd>Meditating at the temple.</dd>
+        <dt>Bucketlist</dt><dd>Meet God.</dd>
+      </dl>
+    </div>
+  </div>
+  <div class="synopses reveal">
+    <div class="synopsis">
+      <h4>In "Eat It Anywhere"</h4>
+      <p>Pemwa is mid-meditation, eyes closed, sustaining a sonorous "hmmmmm." He cracks open his eyes to ensure everyone else still has theirs closed, then reaches into his robe and produces a Honey Dept. He squeezes some into his mouth and the hum opens into an unmistakable "mmmmm." His eyes go wider. Nobody else has their eyes open to see it.</p>
+    </div>
+    <div class="synopsis">
+      <h4>In "Goes With Anything"</h4>
+      <p>Goes with meditation. Goes with nobody watching.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CHARACTER 12 — SAMMY QUINTERO -->
+<section class="character-section" id="character-12">
+  <div class="character-header reveal">
+    <span class="tag">Character 12 / 14</span>
+    <h2>Sammy<br/>Quintero</h2>
+    <p class="role">Boxer</p>
+  </div>
+  <div class="character-grid reveal">
+    <div class="portrait"><img src="images/character-12-boxer/portrait.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-ch-12/800/1000?grayscale'" alt="" loading="lazy" /></div>
+    <div class="bio">
+      <h4>Bio</h4>
+      <p>28. Trained by his father in a run-down Bronx gym.</p>
+      <dl class="dating-profile">
+        <dt>Favorite Song</dt><dd>Survivor — "Eye of the Tiger"</dd>
+        <dt>Hobbies</dt><dd>Shadowboxing.</dd>
+        <dt>Perfect Date</dt><dd>Watching Rocky with a pretty young lady.</dd>
+        <dt>Bucketlist</dt><dd>Fight in Madison Square Garden.</dd>
+      </dl>
+    </div>
+  </div>
+  <div class="synopses reveal">
+    <div class="synopsis">
+      <h4>In "Eat It Anywhere"</h4>
+      <p>Sammy falls into the stool between rounds, hands coming in from every direction — mouthpiece out, water poured into mouth, ice on a bruise, his trainer shouting tactical corrections. A trainer's hand is out for the vaseline; in comes the Honey Dept., squeezed into his hand. He rubs the honey on Sammy's face as if it were vaseline before realizing — he dips his gloved hand on Sammy's face, licks it, then goes to lick Sammy's face before we cut to title card.</p>
+    </div>
+    <div class="synopsis">
+      <h4>In "Goes With Anything"</h4>
+      <p>Goes with a 2nd-round knockout.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CHARACTER 13 — VASILI ROMANENKO -->
+<section class="character-section" id="character-13">
+  <div class="character-header reveal">
+    <span class="tag">Character 13 / 14</span>
+    <h2>Jake<br/>Wahl</h2>
+    <p class="role">Window Cleaner</p>
+  </div>
+  <div class="character-grid reveal">
+    <div class="portrait"><img src="images/character-13-window-cleaner/portrait.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-ch-13/800/1000?grayscale'" alt="" loading="lazy" /></div>
+    <div class="bio">
+      <h4>Bio</h4>
+      <p>34. Sings opera on the rig. Loudly, badly, with great feeling. Has never been seen without a smile on his face.</p>
+      <dl class="dating-profile">
+        <dt>Favorite Song</dt><dd>"Nessun Dorma" — Pavarotti, 1972</dd>
+        <dt>Hobbies</dt><dd>Cleaning windows.</dd>
+        <dt>Perfect Date</dt><dd>Karaoke.</dd>
+        <dt>Bucketlist</dt><dd>Clean the Sears Tower in Chicago.</dd>
+      </dl>
+    </div>
+  </div>
+  <div class="synopses reveal">
+    <div class="synopsis">
+      <h4>In "Eat It Anywhere"</h4>
+      <p>Jake appears outside a foam-covered window hundreds of feet in the air, a slow clear arc through the lather, revealing himself: one hand on the rubber, one hand on a Honey Dept. He waves into the office building, singing something operatic and unbothered.</p>
+    </div>
+    <div class="synopsis">
+      <h4>In "Goes With Anything"</h4>
+      <p>Goes with being suspended 600 feet in the air.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CHARACTER 14 — THE HOAGS -->
+<section class="character-section" id="character-14">
+  <div class="character-header reveal">
+    <span class="tag">Character 14 / 14</span>
+    <h2>Lance &amp;<br/>Margaret<br/>Williamson</h2>
+    <p class="role">The Williamsons</p>
+  </div>
+  <div class="character-grid reveal">
+    <div class="portrait"><img src="images/character-14-broken-down-car/portrait.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-ch-14/800/1000?grayscale'" alt="" loading="lazy" /></div>
+    <div class="bio">
+      <h4>Bio</h4>
+      <p>Travel everywhere by car and Thomas Guide, because they don't "trust" the new technologies.</p>
+      <dl class="dating-profile">
+        <dt>Favorite Song</dt><dd>Bobby Vinton — "Route 66"</dd>
+        <dt>Hobbies</dt><dd>Knitting.</dd>
+        <dt>Perfect Date</dt><dd>Silent movies.</dd>
+        <dt>Bucketlist</dt><dd>Have dinner with Shaq.</dd>
+      </dl>
+    </div>
+  </div>
+  <div class="synopses reveal">
+    <div class="synopsis">
+      <h4>In "Eat It Anywhere"</h4>
+      <p>The Williamsons sit on the shoulder of I-78 watching their hood release a confident jet of steam when a Good Samaritan in a truck rolls down his window and asks if they need help. They light up, beam, giving thanks — and toss a tube of Honey Dept. through his open window. He drives off.</p>
+    </div>
+    <div class="synopsis">
+      <h4>In "Goes With Anything"</h4>
+      <p>Goes with breaking down with the significant other you can't stand.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 03: THE FILMS -->
+<section class="chapter has-divider-top" id="films-chapter">
+  <div class="wave-divider top" data-parallax="0.04"><svg><use href="#wd-down"/></svg></div>
+  <div class="num-row reveal">
+    <div class="label">Chapter 03</div>
+    <h2>The Films</h2>
+  </div>
+</section>
+
+<!-- FILM 01 — drop images into  images/film-02-eat-it-anywhere/  (4 slots) -->
+<section class="film-section has-divider-top" id="film-eat-it-anywhere">
+  <div class="wave-divider top" data-parallax="0.04"><svg><use href="#wd-up"/></svg></div>
+  <div class="film-header reveal">
+    <span class="tag">Film 01 / 02</span>
+    <h2>Eat It<br/>Anywhere</h2>
+    <p class="logline">"Eat it near a horse. Eat it in a stairwell you don't belong in. Eat it during the group photo, just slightly out of frame."</p>
+  </div>
+
+  <div class="ref-grid reveal" data-parallax="-0.03">
+    <div class="frame zoom"><img src="images/film-02-eat-it-anywhere/01.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-f2-1/1200/750?grayscale'" alt="" loading="lazy" /></div>
+    <div class="frame zoom"><img src="images/film-02-eat-it-anywhere/02.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-f2-2/1200/750?grayscale'" alt="" loading="lazy" /></div>
+    <div class="frame zoom"><img src="images/film-02-eat-it-anywhere/03.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-f2-3/1200/750?grayscale'" alt="" loading="lazy" /></div>
+    <div class="frame zoom"><img src="images/film-02-eat-it-anywhere/04.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-f2-4/1200/750?grayscale'" alt="" loading="lazy" /></div>
+  </div>
+
+  <div class="two-col">
+    <div class="col-text reveal">
+      <h4>Script</h4>
+      <p>Locked-off shots, one scenario per shot. Each beat lands in 5–20 seconds.</p>
+      <p>The VO threads them: <em>"Eat it on the wrong train. Eat it while holding something fragile. Eat it mid-apology."</em></p>
+      <p>The frame is the joke — the setting does the work.</p>
+      <p>We end on: "It's your honey."</p>
+    </div>
+    <div class="col-text reveal">
+      <h4>Visual Language / Tone</h4>
+      <p>A warm, slightly over-saturated world designed to delicately teeter that line between reality and dreamlike. This warm vintage-inspired world with an emphasis on primary colors will remain the visual language throughout, making a look that is cohesive, recognizable, and repeatable in nature. Despite being such a distinct and stylized world, nothing should feel overly polished or precious. Designed to feel both nostalgic and timeless at the same time. Roy Andersson and Wes Anderson framing — rigid centered or strict rule-of-thirds.</p>
+      <p>Production design will bring all the scenes to life, heightened with bright color palettes, props, fluorescent lights. Wardrobe + HMU is going to be outfitted to the specific character. Nobody is jeans and a t-shirt — everything from the physical space to the casting to the wardrobe are all to be designed and thought through. We cut on action, never on dialogue. The VO is allowed to land into silence.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FILM 02 — drop images into  images/film-04-goes-with-everything/  (4 slots) -->
+<section class="film-section" id="film-goes-with-everything">
+  <div class="film-header reveal">
+    <span class="tag">Film 02 / 02</span>
+    <h2>Goes With<br/>Anything</h2>
+    <p class="logline">"Pairs well with ricotta toast. Also with timeshare scams, motel ice, and trying to appreciate jazz."</p>
+  </div>
+
+  <div class="ref-grid reveal" data-parallax="-0.03">
+    <div class="frame zoom"><img src="images/film-04-goes-with-everything/01.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-f4-1/1200/750?grayscale'" alt="" loading="lazy" /></div>
+    <div class="frame zoom"><img src="images/film-04-goes-with-everything/02.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-f4-2/1200/750?grayscale'" alt="" loading="lazy" /></div>
+    <div class="frame zoom"><img src="images/film-04-goes-with-everything/03.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-f4-3/1200/750?grayscale'" alt="" loading="lazy" /></div>
+    <div class="frame zoom"><img src="images/film-04-goes-with-everything/04.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-f4-4/1200/750?grayscale'" alt="" loading="lazy" /></div>
+  </div>
+
+  <div class="two-col">
+    <div class="col-text reveal">
+      <h4>Script</h4>
+      <p>Pairing vignettes from our Eat It Anywhere series. These are 4–10 second vignettes either building on the Eat It Anywhere series (if posting this 2nd) where these characters and situations are introduced (OR) serving as a snippet into the worlds' of these characters that we then get to dive into deeper with Eat It Anywhere (if posting 1st). A scene from ordinary life: a tanning bed, a sad ballet class, a formal dinner-for-one. Honey enters the frame. A super lands: "GOES WITH FRAGILE MASCULINITY."</p>
+    </div>
+    <div class="col-text reveal">
+      <h4>Visual Language / Tone</h4>
+      <p>Same world as Film 01 but with title cards integrated into the frame rather than a separate title card — set in brand mono, dropped into the negative space the production design leaves us. No graphic backgrounds, no shadows under the type.</p>
+
+      <h4 style="margin-top:32px;">Hero Video</h4>
+      <p>Flying through 8–12 situations. Some absurd, some tender, all observed.</p>
+
+      <h4 style="margin-top:32px;">Camera Movement</h4>
+      <p>Camera movement is to be intentional and always locked off, designed to show all of the world needed for each concept and not too much more. The framing / composition for the campaign should feel like a painting with movement, with intentional off-center subjects and props in the fore and background to give dimension to the otherwise static frame. Finding creative ways to incorporate small branded details in these props to live in the physical space that feel discovered rather than staged.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 04: PRODUCTION DESIGN -->
+<section class="chapter has-divider-top" id="prod-design-chapter">
+  <div class="wave-divider top" data-parallax="0.04"><svg><use href="#wd-down"/></svg></div>
+  <div class="num-row reveal">
+    <div class="label">Chapter 04</div>
+    <h2>Production<br/>Design</h2>
+  </div>
+</section>
+
+<section class="cream has-divider-top" id="prod-design">
+  <div class="wave-divider top" data-parallax="0.04"><svg><use href="#wd-up"/></svg></div>
+  <span class="tag">04 · Sets, Props, Wardrobe</span>
+  <div class="two-col">
+    <div class="col-text reveal">
+      <h3>The Room Does<br/>The Joke.</h3>
+      <p>Every set we build, dress, or scout for this campaign is doing comedic work before anyone says a word. The walls have to be the right wrong color. The chair has to be the right wrong chair. We never decorate to a brief — we collect to a feeling.</p>
+      <p>Locations are real wherever possible. When we build, we build to look found. No production-design fingerprints. Andersson's rule: the production designer should be invisible, and slightly mean.</p>
+      <p>Each character carries a palette into their room. Honey is the warm note in every one.</p>
+    </div>
+    <div class="col-text reveal">
+      <h4>Locations</h4>
+      <p>Honest, specific, dated. The kind of room a particular person has actually lived in. Wallpaper that's been there a while.</p>
+
+      <h4 style="margin-top:32px;">Wardrobe</h4>
+      <p>Real garments. No costume. We dress to what a real version of this person owns. Tailoring is allowed; styling is not.</p>
+
+      <h4 style="margin-top:32px;">Props</h4>
+      <p>One signature object per character on screen — a medal, a nameplate, a bingo dauber, a Pinarello. Honey is always a prop, never a hero.</p>
+
+      <h4 style="margin-top:32px;">Color</h4>
+      <p>Mid-century beige, motel green, fluorescent pink, dust. Each location bringing its own. We don't grade them together; we let them argue.</p>
+    </div>
+  </div>
+
+  <!-- Production Design reference grid — drop images into images/production-design/ (4 slots) -->
+  <div class="ref-grid reveal" data-parallax="-0.03" style="margin-top: 72px;">
+    <div class="frame zoom"><img src="images/production-design/01.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-pd-1/1200/750?grayscale'" alt="" loading="lazy" /></div>
+    <div class="frame zoom"><img src="images/production-design/02.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-pd-2/1200/750?grayscale'" alt="" loading="lazy" /></div>
+    <div class="frame zoom"><img src="images/production-design/03.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-pd-3/1200/750?grayscale'" alt="" loading="lazy" /></div>
+    <div class="frame zoom"><img src="images/production-design/04.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-pd-4/1200/750?grayscale'" alt="" loading="lazy" /></div>
+  </div>
+
+</section>
+
+<!-- CHAPTER 05: EDITING & SOUND -->
+<section class="chapter has-divider-top" id="edit-chapter">
+  <div class="wave-divider top" data-parallax="0.04"><svg><use href="#wd-down"/></svg></div>
+  <div class="num-row reveal">
+    <div class="label">Chapter 05</div>
+    <h2>Editing<br/>&amp; Sound</h2>
+  </div>
+</section>
+
+<section class="cream has-divider-top">
+  <div class="wave-divider top" data-parallax="0.04"><svg><use href="#wd-up"/></svg></div>
+  <span class="tag">05 · Cutting & Mix</span>
+  <div class="two-col">
+    <div class="col-text reveal">
+      <h3>The Cut Should<br/>Arrive Late.</h3>
+      <p>Both films share a cutting rhythm. We hold each shot one beat past comfort. The longer we trust the frame, the funnier it gets. Tati's rule — if you cut on the laugh, you killed the laugh.</p>
+      <p>Across the campaign we'd build a single edit logic: open on a wide, hold on the eater, cut to the thing they're not noticing, return. Repeat. Vary.</p>
+    </div>
+    <div class="col-text reveal">
+      <h4>Foley</h4>
+      <p>Foley is doing as much work as picture. Every spoon scrape, every chair shift, every wrapper. The honey itself has a sound — slow, viscous, deliberate. We record it. It's the loudest thing in the room when we want it to be.</p>
+
+      <h4 style="margin-top:32px;">Score</h4>
+      <p>Sparse and instrumental. Strings, a single woodwind, occasional vibraphone. The score never sells the joke. It sits beside it.</p>
+
+      <h4 style="margin-top:32px;">Voiceover</h4>
+      <p>One voice across both films. Warm, dry, slightly older than expected. We'd suggest a curated short list and tape early.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING STRIP — drop images into  images/closing-strip/  (8 slots) -->
+<section class="strip-section scroll-driven no-min" style="padding-top: 140px;">
+  <div class="wave-divider top" data-parallax="0.04"><svg><use href="#wd-down"/></svg></div>
+  <div class="strip" style="animation-duration: 70s;">
+    <div class="frame"><img src="images/closing-strip/01.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-1/1200/750?grayscale'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/closing-strip/02.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-2/1200/750?grayscale'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/closing-strip/03.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-3/1200/750?grayscale'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/closing-strip/04.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-4/1200/750?grayscale'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/closing-strip/05.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-5/1200/750?grayscale'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/closing-strip/06.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-6/1200/750?grayscale'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/closing-strip/07.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-7/1200/750?grayscale'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/closing-strip/08.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-8/1200/750?grayscale'" alt="" loading="lazy" /></div>
+    <!-- duplicate -->
+    <div class="frame"><img src="images/closing-strip/01.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-1/1200/750?grayscale'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/closing-strip/02.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-2/1200/750?grayscale'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/closing-strip/03.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-3/1200/750?grayscale'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/closing-strip/04.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-4/1200/750?grayscale'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/closing-strip/05.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-5/1200/750?grayscale'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/closing-strip/06.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-6/1200/750?grayscale'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/closing-strip/07.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-7/1200/750?grayscale'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/closing-strip/08.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-8/1200/750?grayscale'" alt="" loading="lazy" /></div>
+  </div>
+</section>
+
+<!-- 05 THANK YOU -->
+<section class="closing" id="thanks">
+  <div class="wave-divider top" data-parallax="0.04"><svg><use href="#wd-up"/></svg></div>
+  <h2 class="mark reveal">THANK<br/>YOU.</h2>
+  <div class="signoff reveal">
+    Carlton Lorenz<br/>
+    <a href="https://studiosdk.co" target="_blank" rel="noopener">studiosdk.co</a>
+  </div>
+  <div class="credit reveal">Honey Department · Fall 2026</div>
+</section>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    }
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  const parallaxItems = Array.from(document.querySelectorAll('[data-parallax]')).map(el => ({
+    el, speed: parseFloat(el.dataset.parallax)
+  }));
+  let ticking = false;
+  function updateParallax() {
+    const vh = window.innerHeight;
+    for (const item of parallaxItems) {
+      const rect = item.el.getBoundingClientRect();
+      if (rect.bottom < -vh || rect.top > vh * 2) continue;
+      const elCenter = rect.top + rect.height / 2;
+      const fromCenter = elCenter - vh / 2;
+      const offset = -fromCenter * item.speed;
+      item.el.style.transform = `translate3d(0, ${offset.toFixed(2)}px, 0)`;
+    }
+    ticking = false;
+  }
+  function onScroll() { if (!ticking) { requestAnimationFrame(updateParallax); ticking = true; } }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  updateParallax();
+</script>
+</body>
+</html>

@@ -1013,7 +1013,7 @@
   <div class="synopses reveal">
     <div class="synopsis">
       <h4>In "Eat It Anywhere"</h4>
-      <p>Frank and Richard are mid-donut in their cruiser when Frank produces a Honey Dept. from his pocket and drizzles a slow, careful zigzag across his jelly-filled donut. We hear on their intercom "Paging cruiser 3150, hello cruiser 3150?" They look at each other and turn down the volume as Frank honeys Richard's donut.</p>
+      <p style="font-style: italic; opacity: 0.55;">Scenario in development.</p>
     </div>
     <div class="synopsis">
       <h4>In "Goes With Anything"</h4>
@@ -1044,7 +1044,7 @@
   <div class="synopses reveal">
     <div class="synopsis">
       <h4>In "Eat It Anywhere"</h4>
-      <p>Frank and Richard are mid-donut in their cruiser when Frank produces a Honey Dept. from his pocket and drizzles a slow, careful zigzag across his jelly-filled donut. We hear on their intercom "Paging cruiser 3150, hello cruiser 3150?" They look at each other and turn down the volume as Frank honeys Richard's donut.</p>
+      <p style="font-style: italic; opacity: 0.55;">Scenario in development.</p>
     </div>
     <div class="synopsis">
       <h4>In "Goes With Anything"</h4>
@@ -1075,7 +1075,7 @@
   <div class="synopses reveal">
     <div class="synopsis">
       <h4>In "Eat It Anywhere"</h4>
-      <p>Frank and Richard are mid-donut in their cruiser when Frank produces a Honey Dept. from his pocket and drizzles a slow, careful zigzag across his jelly-filled donut. We hear on their intercom "Paging cruiser 3150, hello cruiser 3150?" They look at each other and turn down the volume as Frank honeys Richard's donut.</p>
+      <p style="font-style: italic; opacity: 0.55;">Scenario in development.</p>
     </div>
     <div class="synopsis">
       <h4>In "Goes With Anything"</h4>
@@ -1489,9 +1489,11 @@
     var lbRole = lightbox.querySelector('.pl-role');
     var hoverTimer = null;
     var isOpen = false;
+    var activePortrait = null;
+    var suppressedPortrait = null; // portrait the user just closed — won't reopen until they fully leave it
     var isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 
-    function open(src, name, role) {
+    function open(src, name, role, portraitEl) {
       lbImg.src = src;
       lbName.textContent = name;
       lbRole.textContent = role;
@@ -1499,11 +1501,14 @@
       lightbox.classList.add('is-open');
       lightbox.setAttribute('aria-hidden', 'false');
       isOpen = true;
+      activePortrait = portraitEl;
     }
     function close() {
       lightbox.classList.remove('is-open');
       lightbox.setAttribute('aria-hidden', 'true');
       isOpen = false;
+      suppressedPortrait = activePortrait; // block re-open on this portrait until mouseleave
+      activePortrait = null;
     }
 
     document.querySelectorAll('.character-grid .portrait').forEach(function(p) {
@@ -1516,17 +1521,19 @@
       if (isTouch) {
         p.addEventListener('click', function(e) {
           e.preventDefault();
-          open(img.currentSrc || img.src, name, role);
+          open(img.currentSrc || img.src, name, role, p);
         });
       } else {
         p.addEventListener('mouseenter', function() {
+          if (suppressedPortrait === p) return; // user must leave before reopening
           clearTimeout(hoverTimer);
           hoverTimer = setTimeout(function() {
-            open(img.currentSrc || img.src, name, role);
+            open(img.currentSrc || img.src, name, role, p);
           }, 140);
         });
         p.addEventListener('mouseleave', function() {
           clearTimeout(hoverTimer);
+          if (suppressedPortrait === p) suppressedPortrait = null; // clear suppression on full exit
         });
       }
     });

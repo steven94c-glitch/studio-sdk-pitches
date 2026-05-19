@@ -372,48 +372,52 @@
     z-index: 200;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1);
     background: rgba(239, 230, 210, 0.85);
     backdrop-filter: blur(20px) saturate(1.1);
     -webkit-backdrop-filter: blur(20px) saturate(1.1);
-    display: grid;
-    grid-template-rows: 1fr auto;
-    align-items: end;
-    justify-items: center;
-    padding: 6vh 6vw 4vh;
-    gap: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4vh 4vw;
+    gap: 24px;
   }
   .portrait-lightbox.is-open {
     opacity: 1;
     pointer-events: auto;
   }
-  .pl-stage {
-    width: 100%;
-    height: 100%;
-    display: flex;
+  /* hitbox = image + generous padding for forgiving mouseleave detection */
+  .pl-hitbox {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    padding: 48px;
+    max-width: 100%;
+    max-height: calc(100% - 80px);
+    line-height: 0;
   }
   .portrait-lightbox img {
+    display: block;
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
-    transform: scale(0.94) translateY(8px);
+    transform: scale(0.96);
     opacity: 0;
-    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
     box-shadow: 0 30px 80px -20px rgba(36, 31, 33, 0.35);
   }
   .portrait-lightbox.is-open img {
-    transform: scale(1) translateY(0);
+    transform: scale(1);
     opacity: 1;
   }
   .pl-caption {
     text-align: center;
     color: var(--ink);
-    transform: translateY(12px);
+    transform: translateY(8px);
     opacity: 0;
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s, opacity 0.5s ease 0.1s;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.08s, opacity 0.4s ease 0.08s;
+    pointer-events: none;
   }
   .portrait-lightbox.is-open .pl-caption {
     transform: translateY(0);
@@ -421,7 +425,7 @@
   }
   .pl-caption .pl-name {
     font-family: var(--display);
-    font-size: clamp(20px, 2.4vw, 32px);
+    font-size: clamp(22px, 2.4vw, 32px);
     line-height: 1;
     letter-spacing: -.01em;
     text-transform: uppercase;
@@ -430,21 +434,21 @@
   .pl-caption .pl-role {
     font-family: var(--mono);
     font-style: italic;
-    font-size: clamp(12px, 1.1vw, 14px);
+    font-size: clamp(13px, 1.1vw, 14px);
     margin: 8px 0 0;
     opacity: .65;
   }
-  .pl-hint {
-    position: absolute;
-    bottom: 18px; left: 50%;
-    transform: translateX(-50%);
-    font-family: var(--mono);
-    font-size: 9px;
-    letter-spacing: .3em;
-    text-transform: uppercase;
-    color: var(--ink);
-    opacity: .35;
-    pointer-events: none;
+
+  /* mobile lightbox tweaks */
+  @media (max-width: 860px) {
+    .portrait-lightbox {
+      padding: 6vh 4vw;
+      gap: 20px;
+      background: rgba(239, 230, 210, 0.94);
+    }
+    .pl-hitbox { padding: 20px; max-height: calc(100% - 100px); }
+    .pl-caption .pl-name { font-size: 22px; }
+    .pl-caption .pl-role { font-size: 12px; }
   }
 
   /* —— Per-character portrait overrides —— */
@@ -506,6 +510,11 @@
     font-size: 14px;
     line-height: 1.55;
     max-width: 50ch;
+  }
+  .dating-profile dd iframe {
+    display: block;
+    max-width: 100%;
+    width: 100%;
   }
 
   .synopses {
@@ -700,7 +709,7 @@
     .character-header { margin-bottom: 32px; }
     .character-header .role { font-size: 14px; }
     .character-grid { grid-template-columns: 1fr; gap: 24px; margin-bottom: 32px; }
-    .character-grid .portrait { aspect-ratio: 4 / 5; max-width: 480px; }
+    .character-grid .portrait { aspect-ratio: 4 / 5; max-width: 480px; margin: 0 auto; width: 100%; }
     .synopses { grid-template-columns: 1fr; gap: 24px; padding-top: 32px; }
     .synopsis p { font-size: 14px; }
   }
@@ -1473,91 +1482,132 @@
   window.addEventListener('resize', onScroll);
   updateParallax();
 
-  // portrait expander — editorial hover overlay
+  // portrait expander — editorial overlay with proper hover state machine
   (function() {
+    var isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+
     var lightbox = document.createElement('div');
     lightbox.className = 'portrait-lightbox';
     lightbox.setAttribute('aria-hidden', 'true');
     lightbox.innerHTML =
-      '<div class="pl-stage"><img alt="" /></div>' +
-      '<div class="pl-caption"><h3 class="pl-name"></h3><p class="pl-role"></p></div>' +
-      '<div class="pl-hint">Move cursor away to close</div>';
+      '<div class="pl-hitbox"><img alt="" /></div>' +
+      '<div class="pl-caption"><h3 class="pl-name"></h3><p class="pl-role"></p></div>';
     document.body.appendChild(lightbox);
 
+    var lbHitbox = lightbox.querySelector('.pl-hitbox');
     var lbImg = lightbox.querySelector('img');
     var lbName = lightbox.querySelector('.pl-name');
     var lbRole = lightbox.querySelector('.pl-role');
-    var hoverTimer = null;
-    var isOpen = false;
-    var activePortrait = null;
-    var suppressedPortrait = null; // portrait the user just closed — won't reopen until they fully leave it
-    var isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 
-    function open(src, name, role, portraitEl) {
+    var OPEN_DELAY = 130;          // hover delay before opening
+    var CLOSE_DELAY = 180;         // grace before closing after leaving hitbox
+    var REACH_GRACE = 900;         // ms after open for cursor to reach the image
+    var openTimer = null, closeTimer = null, reachTimer = null;
+    var isOpen = false;
+    var cursorOverImage = false;
+    var cursorOverPortrait = null; // ref to portrait being hovered, or null
+
+    function doOpen(src, name, role) {
       lbImg.src = src;
       lbName.textContent = name;
-      lbRole.textContent = role;
+      lbRole.textContent = role || '';
       lbRole.style.display = role ? '' : 'none';
       lightbox.classList.add('is-open');
       lightbox.setAttribute('aria-hidden', 'false');
       isOpen = true;
-      activePortrait = portraitEl;
+      cursorOverImage = false;
+      // grace period: if cursor doesn't reach image within REACH_GRACE, close
+      clearTimeout(reachTimer);
+      reachTimer = setTimeout(function() {
+        if (!cursorOverImage && !cursorOverPortrait) doClose();
+      }, REACH_GRACE);
     }
-    function close() {
+    function doClose() {
+      clearTimeout(reachTimer);
+      clearTimeout(closeTimer);
       lightbox.classList.remove('is-open');
       lightbox.setAttribute('aria-hidden', 'true');
       isOpen = false;
-      suppressedPortrait = activePortrait; // block re-open on this portrait until mouseleave
-      activePortrait = null;
+      cursorOverImage = false;
+    }
+    function scheduleClose() {
+      clearTimeout(closeTimer);
+      closeTimer = setTimeout(function() {
+        if (!cursorOverImage && !cursorOverPortrait) doClose();
+      }, CLOSE_DELAY);
     }
 
+    // Hitbox listeners — keep open while cursor is over image (with padding)
+    if (!isTouch) {
+      lbHitbox.addEventListener('mouseenter', function() {
+        cursorOverImage = true;
+        clearTimeout(closeTimer);
+        clearTimeout(reachTimer);
+      });
+      lbHitbox.addEventListener('mouseleave', function() {
+        cursorOverImage = false;
+        scheduleClose();
+      });
+    }
+
+    // Portrait listeners
     document.querySelectorAll('.character-grid .portrait').forEach(function(p) {
       var img = p.querySelector('img');
       if (!img) return;
       var section = p.closest('.character-section');
-      var name = section ? section.querySelector('h2').innerText.replace(/\n/g, ' ') : '';
-      var role = section && section.querySelector('.role') ? section.querySelector('.role').innerText : '';
+      var name = section ? section.querySelector('h2').innerText.replace(/\n/g, ' ').trim() : '';
+      var role = section && section.querySelector('.role') ? section.querySelector('.role').innerText.trim() : '';
+      var getSrc = function() { return img.currentSrc || img.src; };
 
       if (isTouch) {
+        // Touch: tap to open
         p.addEventListener('click', function(e) {
           e.preventDefault();
-          open(img.currentSrc || img.src, name, role, p);
+          doOpen(getSrc(), name, role);
         });
       } else {
         p.addEventListener('mouseenter', function() {
-          if (suppressedPortrait === p) return; // user must leave before reopening
-          clearTimeout(hoverTimer);
-          hoverTimer = setTimeout(function() {
-            open(img.currentSrc || img.src, name, role, p);
-          }, 140);
+          cursorOverPortrait = p;
+          clearTimeout(closeTimer);
+          if (isOpen) return; // already showing — don't schedule another open
+          clearTimeout(openTimer);
+          openTimer = setTimeout(function() {
+            doOpen(getSrc(), name, role);
+          }, OPEN_DELAY);
         });
         p.addEventListener('mouseleave', function() {
-          clearTimeout(hoverTimer);
-          if (suppressedPortrait === p) suppressedPortrait = null; // clear suppression on full exit
+          cursorOverPortrait = null;
+          clearTimeout(openTimer);
+          if (isOpen) scheduleClose();
+        });
+        // Click also opens immediately (skip delay)
+        p.addEventListener('click', function() {
+          clearTimeout(openTimer);
+          if (!isOpen) doOpen(getSrc(), name, role);
         });
       }
     });
 
-    // Desktop: close when mouse moves outside the expanded image bounds
-    if (!isTouch) {
-      document.addEventListener('mousemove', function(e) {
-        if (!isOpen) return;
-        var r = lbImg.getBoundingClientRect();
-        var pad = 40; // forgiving hit area around the image
-        if (e.clientX < r.left - pad || e.clientX > r.right + pad ||
-            e.clientY < r.top - pad || e.clientY > r.bottom + pad) {
-          close();
-        }
+    // Touch: tap backdrop to close
+    if (isTouch) {
+      lightbox.addEventListener('click', function(e) {
+        // close on any tap (image included, since there's no other way to dismiss)
+        doClose();
       });
     }
 
-    // Touch: tap anywhere to close
-    if (isTouch) {
-      lightbox.addEventListener('click', close);
-    }
+    // Esc closes
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && isOpen) close();
+      if (e.key === 'Escape' && isOpen) doClose();
     });
+
+    // Auto-close on scroll (so it doesn't hang while user scrolls past)
+    var scrollClose = null;
+    window.addEventListener('scroll', function() {
+      if (!isOpen) return;
+      clearTimeout(scrollClose);
+      scrollClose = setTimeout(doClose, 100);
+    }, { passive: true });
   })();
 </script>
 </body>

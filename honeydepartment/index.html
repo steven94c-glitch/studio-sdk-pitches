@@ -269,7 +269,7 @@
     display: block;
     transition: transform .8s ease;
     /* lock the moodboard to black & white */
-    filter: grayscale(1) contrast(1.04);
+    filter: none;
   }
   .frame.zoom img:hover { transform: scale(1.04); }
 
@@ -358,7 +358,7 @@
     width: 100%; height: 100%;
     object-fit: cover;            /* fill the frame, crop as needed */
     object-position: 50% 35%;     /* bias toward upper area so faces land in frame */
-    filter: grayscale(1) contrast(1.04);
+    filter: none;
     display: block;
   }
 
@@ -683,19 +683,19 @@
 <!-- INTRO STRIP — images/intro-strip/ (6 slots) -->
 <section class="strip-section scroll-driven no-min cream" style="padding-top: 32px;">
   <div class="strip">
-    <div class="frame"><img src="images/intro-strip/01.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-is-1/1200/750?grayscale'" alt="" loading="lazy" /></div>
-    <div class="frame"><img src="images/intro-strip/02.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-is-2/1200/750?grayscale'" alt="" loading="lazy" /></div>
-    <div class="frame"><img src="images/intro-strip/03.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-is-3/1200/750?grayscale'" alt="" loading="lazy" /></div>
-    <div class="frame"><img src="images/intro-strip/04.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-is-4/1200/750?grayscale'" alt="" loading="lazy" /></div>
-    <div class="frame"><img src="images/intro-strip/05.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-is-5/1200/750?grayscale'" alt="" loading="lazy" /></div>
-    <div class="frame"><img src="images/intro-strip/06.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-is-6/1200/750?grayscale'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/intro-strip/01.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-is-1/1200/750'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/intro-strip/02.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-is-2/1200/750'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/intro-strip/03.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-is-3/1200/750'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/intro-strip/04.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-is-4/1200/750'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/intro-strip/05.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-is-5/1200/750'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/intro-strip/06.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-is-6/1200/750'" alt="" loading="lazy" /></div>
     <!-- duplicate for seamless loop -->
-    <div class="frame"><img src="images/intro-strip/01.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-is-1/1200/750?grayscale'" alt="" loading="lazy" /></div>
-    <div class="frame"><img src="images/intro-strip/02.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-is-2/1200/750?grayscale'" alt="" loading="lazy" /></div>
-    <div class="frame"><img src="images/intro-strip/03.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-is-3/1200/750?grayscale'" alt="" loading="lazy" /></div>
-    <div class="frame"><img src="images/intro-strip/04.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-is-4/1200/750?grayscale'" alt="" loading="lazy" /></div>
-    <div class="frame"><img src="images/intro-strip/05.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-is-5/1200/750?grayscale'" alt="" loading="lazy" /></div>
-    <div class="frame"><img src="images/intro-strip/06.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-is-6/1200/750?grayscale'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/intro-strip/01.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-is-1/1200/750'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/intro-strip/02.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-is-2/1200/750'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/intro-strip/03.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-is-3/1200/750'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/intro-strip/04.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-is-4/1200/750'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/intro-strip/05.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-is-5/1200/750'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/intro-strip/06.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-is-6/1200/750'" alt="" loading="lazy" /></div>
   </div>
 </section>
 
@@ -751,7 +751,7 @@
     <p class="role">US Army Commander</p>
   </div>
   <div class="character-grid reveal">
-    <div class="portrait"><img src="images/character-01-army-general/portrait.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-ch-01/800/1000?grayscale'" alt="" loading="lazy" /></div>
+    <div class="portrait"><img src="images/character-01-army-general/portrait.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-ch-01/800/1000'" alt="" loading="lazy" /></div>
     <div class="bio">
       <h4>Bio</h4>
       <p>35-year career. Two combat tours. A chest you can read. Spends Sunday afternoons assembling scale model trains with a pair of tweezers. Hasn't said "I love you" out loud since the early Reagan administration.</p>
@@ -783,7 +783,7 @@
     <p class="role">Professional dog walker</p>
   </div>
   <div class="character-grid reveal">
-    <div class="portrait"><img src="images/character-02-dog-walker/portrait.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-ch-02/800/1000?grayscale'" alt="" loading="lazy" /></div>
+    <div class="portrait"><img src="images/character-02-dog-walker/portrait.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-ch-02/800/1000'" alt="" loading="lazy" /></div>
     <div class="bio">
       <h4>Bio</h4>
       <p>31. Charges $400 per walk. Twelve dogs in her standing rotation. Bangs cut by a stylist who flies in from Milan. Calls every dog by its owner's last name. Owns no dogs.</p>
@@ -815,7 +815,7 @@
     <p class="role">Beekeeper</p>
   </div>
   <div class="character-grid reveal">
-    <div class="portrait"><img src="images/character-03-bee-keeper/portrait.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-ch-03/800/1000?grayscale'" alt="" loading="lazy" /></div>
+    <div class="portrait"><img src="images/character-03-bee-keeper/portrait.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-ch-03/800/1000'" alt="" loading="lazy" /></div>
     <div class="bio">
       <h4>Bio</h4>
       <p>42 years old. Eleven thousand career stings. Names every queen after a vintage car. Drinks one Schlitz a night. Hasn't been to a movie theater since 1979 but reads every review in the Sunday paper.</p>
@@ -847,7 +847,7 @@
     <p class="role">Bodybuilder</p>
   </div>
   <div class="character-grid reveal">
-    <div class="portrait"><img src="images/character-04-body-builder/portrait.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-ch-04/800/1000?grayscale'" alt="" loading="lazy" /></div>
+    <div class="portrait"><img src="images/character-04-body-builder/portrait.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-ch-04/800/1000'" alt="" loading="lazy" /></div>
     <div class="bio">
       <h4>Bio</h4>
       <p>44. Lives at home. Owns fourteen cut-off sweat suits, all gray, all from 1991–1994. Calls his mother at 4pm every day to find out what's for dinner. Tells everyone his bench max before his name.</p>
@@ -879,7 +879,7 @@
     <p class="role">Cyclist</p>
   </div>
   <div class="character-grid reveal">
-    <div class="portrait"><img src="images/character-05-bicyclist/portrait.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-ch-05/800/1000?grayscale'" alt="" loading="lazy" /></div>
+    <div class="portrait"><img src="images/character-05-bicyclist/portrait.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-ch-05/800/1000'" alt="" loading="lazy" /></div>
     <div class="bio">
       <h4>Bio</h4>
       <p>29. Belgian-American. Four straight gran fondos in the bottom 5%. Studio apartment with more bikes than furniture and a betta fish named Doping Allegation.</p>
@@ -911,7 +911,7 @@
     <p class="role">Bingo Player</p>
   </div>
   <div class="character-grid reveal">
-    <div class="portrait"><img src="images/character-06-bingo-regular/portrait.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-ch-06/800/1000?grayscale'" alt="" loading="lazy" /></div>
+    <div class="portrait"><img src="images/character-06-bingo-regular/portrait.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-ch-06/800/1000'" alt="" loading="lazy" /></div>
     <div class="bio">
       <h4>Bio</h4>
       <p>81. Same seat, Tuesdays and Thursdays, for 23 years. Won $2,400 in 1987 and hasn't won since. Hasn't spoken to her sister since she beat her in bingo 15 years ago.</p>
@@ -943,7 +943,7 @@
     <p class="role">Frankie Rezardo &amp; Richard Dent · Police Officers</p>
   </div>
   <div class="character-grid reveal">
-    <div class="portrait"><img src="images/character-07-cops/portrait.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-ch-07/800/1000?grayscale'" alt="" loading="lazy" /></div>
+    <div class="portrait"><img src="images/character-07-cops/portrait.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-ch-07/800/1000'" alt="" loading="lazy" /></div>
     <div class="bio">
       <h4>Bio</h4>
       <p>Partners 19 years. Parked behind the laundromat at 6:42am every weekday. Frank does the crossword puzzles in their downtime while Richard practices his harmonica. Neither have pulled anyone over in a calendar year.</p>
@@ -975,7 +975,7 @@
     <p class="role">Hairdresser</p>
   </div>
   <div class="character-grid reveal">
-    <div class="portrait"><img src="images/character-08-hair-dresser/portrait.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-ch-08/800/1000?grayscale'" alt="" loading="lazy" /></div>
+    <div class="portrait"><img src="images/character-08-hair-dresser/portrait.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-ch-08/800/1000'" alt="" loading="lazy" /></div>
     <div class="bio">
       <h4>Bio</h4>
       <p>46. Hair stands 11 inches tall. Engaged five times to the same man, named Carl. Hasn't had a waking moment without a piece of gum in her mouth since 1978.</p>
@@ -1007,7 +1007,7 @@
     <p class="role">Boyfriend</p>
   </div>
   <div class="character-grid reveal">
-    <div class="portrait"><img src="images/character-09-break-up/portrait.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-ch-09/800/1000?grayscale'" alt="" loading="lazy" /></div>
+    <div class="portrait"><img src="images/character-09-break-up/portrait.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-ch-09/800/1000'" alt="" loading="lazy" /></div>
     <div class="bio">
       <h4>Bio</h4>
       <p>23. Has not initiated a conversation since 2019. Owns a hairless cat named Messiah.</p>
@@ -1039,7 +1039,7 @@
     <p class="role">Painter</p>
   </div>
   <div class="character-grid reveal">
-    <div class="portrait"><img src="images/character-10-painter/portrait.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-ch-10/800/1000?grayscale'" alt="" loading="lazy" /></div>
+    <div class="portrait"><img src="images/character-10-painter/portrait.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-ch-10/800/1000'" alt="" loading="lazy" /></div>
     <div class="bio">
       <h4>Bio</h4>
       <p>52. Blue-collar painter. A simple man, eats lunch out of the same Igloo cooler he's owned since 1989. Watches a single coat of paint dry for the full eight-hour cure window without leaving the room. Has lived next to the same neighbor for 14 years and still doesn't know his name.</p>
@@ -1071,7 +1071,7 @@
     <p class="role">Buddhist Monk</p>
   </div>
   <div class="character-grid reveal">
-    <div class="portrait"><img src="images/character-11-monk/portrait.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-ch-11/800/1000?grayscale'" alt="" loading="lazy" /></div>
+    <div class="portrait"><img src="images/character-11-monk/portrait.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-ch-11/800/1000'" alt="" loading="lazy" /></div>
     <div class="bio">
       <h4>Bio</h4>
       <p>35. Ordained at 28. Has not spoken on a telephone in thirteen years.</p>
@@ -1103,7 +1103,7 @@
     <p class="role">Boxer</p>
   </div>
   <div class="character-grid reveal">
-    <div class="portrait"><img src="images/character-12-boxer/portrait.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-ch-12/800/1000?grayscale'" alt="" loading="lazy" /></div>
+    <div class="portrait"><img src="images/character-12-boxer/portrait.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-ch-12/800/1000'" alt="" loading="lazy" /></div>
     <div class="bio">
       <h4>Bio</h4>
       <p>28. Trained by his father in a run-down Bronx gym.</p>
@@ -1135,7 +1135,7 @@
     <p class="role">Window Cleaner</p>
   </div>
   <div class="character-grid reveal">
-    <div class="portrait"><img src="images/character-13-window-cleaner/portrait.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-ch-13/800/1000?grayscale'" alt="" loading="lazy" /></div>
+    <div class="portrait"><img src="images/character-13-window-cleaner/portrait.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-ch-13/800/1000'" alt="" loading="lazy" /></div>
     <div class="bio">
       <h4>Bio</h4>
       <p>34. Sings opera on the rig. Loudly, badly, with great feeling. Has never been seen without a smile on his face.</p>
@@ -1167,7 +1167,7 @@
     <p class="role">The Williamsons</p>
   </div>
   <div class="character-grid reveal">
-    <div class="portrait"><img src="images/character-14-broken-down-car/portrait.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-ch-14/800/1000?grayscale'" alt="" loading="lazy" /></div>
+    <div class="portrait"><img src="images/character-14-broken-down-car/portrait.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-ch-14/800/1000'" alt="" loading="lazy" /></div>
     <div class="bio">
       <h4>Bio</h4>
       <p>Travel everywhere by car and Thomas Guide, because they don't "trust" the new technologies.</p>
@@ -1210,10 +1210,10 @@
   </div>
 
   <div class="ref-grid reveal" data-parallax="-0.03">
-    <div class="frame zoom"><img src="images/film-02-eat-it-anywhere/01.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-f2-1/1200/750?grayscale'" alt="" loading="lazy" /></div>
-    <div class="frame zoom"><img src="images/film-02-eat-it-anywhere/02.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-f2-2/1200/750?grayscale'" alt="" loading="lazy" /></div>
-    <div class="frame zoom"><img src="images/film-02-eat-it-anywhere/03.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-f2-3/1200/750?grayscale'" alt="" loading="lazy" /></div>
-    <div class="frame zoom"><img src="images/film-02-eat-it-anywhere/04.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-f2-4/1200/750?grayscale'" alt="" loading="lazy" /></div>
+    <div class="frame zoom"><img src="images/film-02-eat-it-anywhere/01.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-f2-1/1200/750'" alt="" loading="lazy" /></div>
+    <div class="frame zoom"><img src="images/film-02-eat-it-anywhere/02.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-f2-2/1200/750'" alt="" loading="lazy" /></div>
+    <div class="frame zoom"><img src="images/film-02-eat-it-anywhere/03.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-f2-3/1200/750'" alt="" loading="lazy" /></div>
+    <div class="frame zoom"><img src="images/film-02-eat-it-anywhere/04.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-f2-4/1200/750'" alt="" loading="lazy" /></div>
   </div>
 
   <div class="two-col">
@@ -1241,10 +1241,10 @@
   </div>
 
   <div class="ref-grid reveal" data-parallax="-0.03">
-    <div class="frame zoom"><img src="images/film-04-goes-with-everything/01.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-f4-1/1200/750?grayscale'" alt="" loading="lazy" /></div>
-    <div class="frame zoom"><img src="images/film-04-goes-with-everything/02.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-f4-2/1200/750?grayscale'" alt="" loading="lazy" /></div>
-    <div class="frame zoom"><img src="images/film-04-goes-with-everything/03.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-f4-3/1200/750?grayscale'" alt="" loading="lazy" /></div>
-    <div class="frame zoom"><img src="images/film-04-goes-with-everything/04.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-f4-4/1200/750?grayscale'" alt="" loading="lazy" /></div>
+    <div class="frame zoom"><img src="images/film-04-goes-with-everything/01.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-f4-1/1200/750'" alt="" loading="lazy" /></div>
+    <div class="frame zoom"><img src="images/film-04-goes-with-everything/02.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-f4-2/1200/750'" alt="" loading="lazy" /></div>
+    <div class="frame zoom"><img src="images/film-04-goes-with-everything/03.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-f4-3/1200/750'" alt="" loading="lazy" /></div>
+    <div class="frame zoom"><img src="images/film-04-goes-with-everything/04.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-f4-4/1200/750'" alt="" loading="lazy" /></div>
   </div>
 
   <div class="two-col">
@@ -1301,10 +1301,10 @@
 
   <!-- Production Design reference grid — drop images into images/production-design/ (4 slots) -->
   <div class="ref-grid reveal" data-parallax="-0.03" style="margin-top: 72px;">
-    <div class="frame zoom"><img src="images/production-design/01.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-pd-1/1200/750?grayscale'" alt="" loading="lazy" /></div>
-    <div class="frame zoom"><img src="images/production-design/02.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-pd-2/1200/750?grayscale'" alt="" loading="lazy" /></div>
-    <div class="frame zoom"><img src="images/production-design/03.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-pd-3/1200/750?grayscale'" alt="" loading="lazy" /></div>
-    <div class="frame zoom"><img src="images/production-design/04.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-pd-4/1200/750?grayscale'" alt="" loading="lazy" /></div>
+    <div class="frame zoom"><img src="images/production-design/01.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-pd-1/1200/750'" alt="" loading="lazy" /></div>
+    <div class="frame zoom"><img src="images/production-design/02.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-pd-2/1200/750'" alt="" loading="lazy" /></div>
+    <div class="frame zoom"><img src="images/production-design/03.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-pd-3/1200/750'" alt="" loading="lazy" /></div>
+    <div class="frame zoom"><img src="images/production-design/04.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-pd-4/1200/750'" alt="" loading="lazy" /></div>
   </div>
 
 </section>
@@ -1344,23 +1344,23 @@
 <section class="strip-section scroll-driven no-min" style="padding-top: 140px;">
   <div class="wave-divider top" data-parallax="0.04"><svg><use href="#wd-down"/></svg></div>
   <div class="strip" style="animation-duration: 70s;">
-    <div class="frame"><img src="images/closing-strip/01.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-1/1200/750?grayscale'" alt="" loading="lazy" /></div>
-    <div class="frame"><img src="images/closing-strip/02.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-2/1200/750?grayscale'" alt="" loading="lazy" /></div>
-    <div class="frame"><img src="images/closing-strip/03.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-3/1200/750?grayscale'" alt="" loading="lazy" /></div>
-    <div class="frame"><img src="images/closing-strip/04.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-4/1200/750?grayscale'" alt="" loading="lazy" /></div>
-    <div class="frame"><img src="images/closing-strip/05.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-5/1200/750?grayscale'" alt="" loading="lazy" /></div>
-    <div class="frame"><img src="images/closing-strip/06.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-6/1200/750?grayscale'" alt="" loading="lazy" /></div>
-    <div class="frame"><img src="images/closing-strip/07.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-7/1200/750?grayscale'" alt="" loading="lazy" /></div>
-    <div class="frame"><img src="images/closing-strip/08.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-8/1200/750?grayscale'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/closing-strip/01.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-1/1200/750'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/closing-strip/02.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-2/1200/750'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/closing-strip/03.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-3/1200/750'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/closing-strip/04.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-4/1200/750'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/closing-strip/05.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-5/1200/750'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/closing-strip/06.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-6/1200/750'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/closing-strip/07.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-7/1200/750'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/closing-strip/08.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-8/1200/750'" alt="" loading="lazy" /></div>
     <!-- duplicate -->
-    <div class="frame"><img src="images/closing-strip/01.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-1/1200/750?grayscale'" alt="" loading="lazy" /></div>
-    <div class="frame"><img src="images/closing-strip/02.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-2/1200/750?grayscale'" alt="" loading="lazy" /></div>
-    <div class="frame"><img src="images/closing-strip/03.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-3/1200/750?grayscale'" alt="" loading="lazy" /></div>
-    <div class="frame"><img src="images/closing-strip/04.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-4/1200/750?grayscale'" alt="" loading="lazy" /></div>
-    <div class="frame"><img src="images/closing-strip/05.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-5/1200/750?grayscale'" alt="" loading="lazy" /></div>
-    <div class="frame"><img src="images/closing-strip/06.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-6/1200/750?grayscale'" alt="" loading="lazy" /></div>
-    <div class="frame"><img src="images/closing-strip/07.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-7/1200/750?grayscale'" alt="" loading="lazy" /></div>
-    <div class="frame"><img src="images/closing-strip/08.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-8/1200/750?grayscale'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/closing-strip/01.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-1/1200/750'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/closing-strip/02.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-2/1200/750'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/closing-strip/03.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-3/1200/750'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/closing-strip/04.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-4/1200/750'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/closing-strip/05.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-5/1200/750'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/closing-strip/06.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-6/1200/750'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/closing-strip/07.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-7/1200/750'" alt="" loading="lazy" /></div>
+    <div class="frame"><img src="images/closing-strip/08.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-8/1200/750'" alt="" loading="lazy" /></div>
   </div>
 </section>
 

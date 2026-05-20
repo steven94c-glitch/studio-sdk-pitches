@@ -334,20 +334,14 @@
     align-items: start;
     margin-bottom: 48px;
     position: relative; z-index: 2;
-    transition: grid-template-columns 0.55s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  /* hover-expand: portrait widens, pushes the rest of the row to the right */
-  .character-grid:has(.portrait:hover) { grid-template-columns: 8fr 4fr; }
   .character-grid .portrait {
     position: relative;
     aspect-ratio: 4 / 5;
     overflow: hidden;
-    background: var(--ink);
+    background: var(--cream);
     cursor: pointer;
-    transition: box-shadow 0.55s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .character-grid .portrait:hover {
-    box-shadow: 0 26px 60px -22px rgba(36, 31, 33, 0.45);
+    transition: box-shadow 0.4s ease;
   }
   .character-grid .portrait img {
     width: 100%; height: 100%;
@@ -355,6 +349,28 @@
     object-position: 50% 35%;     /* bias toward upper area so faces land in frame */
     filter: none;
     display: block;
+  }
+
+  /* —— hover reveal: portrait shows the full uncropped image, text fades —— */
+  .character-grid .bio,
+  .character-section .synopses { transition: opacity 0.35s ease; }
+  .character-section:has(.portrait:hover) .bio,
+  .character-section:has(.portrait:hover) .synopses {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .character-grid .portrait:hover {
+    z-index: 8;
+    grid-column: 1 / -1;
+    aspect-ratio: auto;
+    height: min(82vh, 880px);
+    box-shadow: 0 30px 70px -24px rgba(36, 31, 33, 0.4);
+    animation: portraitReveal 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .character-grid .portrait:hover img { object-fit: contain; }
+  @keyframes portraitReveal {
+    from { opacity: 0.5; }
+    to   { opacity: 1; }
   }
 
   /* portrait expander — editorial overlay, no chrome */
@@ -548,14 +564,8 @@
       align-content: start;
       min-height: 100vh;
       padding: 110px 6vw 64px;
-      transition: grid-template-columns 0.55s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .character-section.has-divider-top { padding-top: 110px; }
-
-    /* hover-expand: portrait widens, bio + synopses slide right */
-    .character-section:has(.portrait:hover) {
-      grid-template-columns: 9fr 4fr 3fr;
-    }
 
     .character-header { grid-area: header; margin-bottom: 0; }
     .character-header h2 { font-size: clamp(40px, 5.4vw, 84px); }

@@ -15,9 +15,6 @@
     --muted-2:  #f5db54;
     --ink:      #241f21;
 
-    /* honey gradient — dark amber edges, warm golden glow low-center */
-    --honey-grad: radial-gradient(ellipse 120% 100% at 50% 74%, #e6bd52 0%, #bd8c34 45%, #6b4a1d 100%);
-
     --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
     --display: 'Alfa Slab One', 'Cooper Black', Georgia, serif;
 
@@ -72,7 +69,7 @@
     overflow: hidden;
   }
   section.cream { background: var(--cream); color: var(--ink); }
-  section.deep  { background: var(--honey-grad); color: var(--cream); }
+  section.deep  { background: var(--muted-2); color: var(--ink); }
   section.no-min { min-height: 0; }
   section.has-divider-top { padding-top: 80px; }
 
@@ -164,8 +161,8 @@
     align-items: flex-start; justify-content: center;
     padding: 140px 6vw 80px;
     position: relative;
-    background: var(--honey-grad);
-    color: var(--cream);
+    background: var(--muted-2);
+    color: var(--ink);
     min-height: auto;
   }
   .chapter .num-row { display: flex; flex-direction: column; gap: 18px; position: relative; z-index: 3; }
@@ -179,7 +176,7 @@
     font-size: var(--t-display-xl);
     line-height: .88; letter-spacing: -.015em;
     margin: 0; text-transform: uppercase;
-    color: var(--cream);
+    color: var(--ink);
     max-width: 14ch;
   }
 
@@ -265,8 +262,8 @@
 
   /* —— character sections —— */
   .cast-intro {
-    background: var(--honey-grad);
-    color: var(--cream);
+    background: var(--muted-2);
+    color: var(--ink);
     padding: 140px 6vw 80px;
     min-height: auto;
     position: relative;

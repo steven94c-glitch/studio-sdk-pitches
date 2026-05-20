@@ -371,7 +371,12 @@
     box-shadow: 0 30px 70px -24px rgba(36, 31, 33, 0.4);
     animation: portraitReveal 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .character-grid .portrait:hover img { object-fit: contain; }
+  /* expanded view always shows the full image centered, overriding
+     the per-character crop tuning used for the thumbnail state */
+  .character-grid .portrait:hover img {
+    object-fit: contain !important;
+    object-position: center !important;
+  }
   @keyframes portraitReveal {
     from { opacity: 0.5; }
     to   { opacity: 1; }

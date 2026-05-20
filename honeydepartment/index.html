@@ -71,7 +71,7 @@
   section.cream { background: var(--cream); color: var(--ink); }
   section.deep  { background: var(--muted-2); color: var(--ink); }
   section.no-min { min-height: 0; }
-  section.has-divider-top { padding-top: 160px; }
+  section.has-divider-top { padding-top: 80px; }
 
   .tag {
     display: inline-block;
@@ -94,19 +94,6 @@
   }
   .footer-mark.right { left: auto; right: 6vw; }
 
-  /* wave divider */
-  .wave-divider {
-    position: absolute;
-    left: -2%; right: -2%;
-    width: 104%;
-    height: 220px;
-    pointer-events: none;
-    z-index: 1;
-    will-change: transform;
-  }
-  .wave-divider.top    { top: -40px; }
-  .wave-divider.bottom { bottom: -40px; }
-  .wave-divider svg { display: block; width: 100%; height: 100%; overflow: visible; }
 
   /* hero — cover */
   .hero {
@@ -318,7 +305,7 @@
     min-height: auto;
     overflow: hidden;
   }
-  .character-section.has-divider-top { padding-top: 160px; }
+  .character-section.has-divider-top { padding-top: 72px; }
 
   .character-header { margin-bottom: 48px; position: relative; z-index: 2; }
   .character-header .tag { margin-bottom: 24px; }
@@ -554,7 +541,7 @@
       min-height: 100vh;
       padding: 110px 6vw 64px;
     }
-    .character-section.has-divider-top { padding-top: 200px; }
+    .character-section.has-divider-top { padding-top: 110px; }
 
     .character-header { grid-area: header; margin-bottom: 0; }
     .character-header h2 { font-size: clamp(40px, 5.4vw, 84px); }
@@ -650,16 +637,16 @@
 
     /* base section: tight by default. Wave-clearance only when needed. */
     section { padding: 48px 6vw; min-height: auto; }
-    section.has-divider-top { padding-top: 100px; }
+    section.has-divider-top { padding-top: 48px; }
 
     /* chapter cards: short, content-driven height */
     .chapter { padding: 48px 6vw; min-height: auto; }
-    .chapter.has-divider-top { padding-top: 100px; }
+    .chapter.has-divider-top { padding-top: 48px; }
     .chapter h2 { max-width: none; }
 
     /* film breakdown sections: only the first one (with divider) needs extra top */
     .film-section { padding: 48px 6vw; }
-    .film-section.has-divider-top { padding-top: 100px; }
+    .film-section.has-divider-top { padding-top: 48px; }
     .film-header { margin-bottom: 32px; }
     .film-header .logline { font-size: 14px; line-height: 1.5; }
 
@@ -693,8 +680,6 @@
     .strip { padding: 12px 0; }
     .strip .frame { width: 68vw; height: 26vh; }
 
-    .wave-divider { height: 120px; }
-    .wave-divider.top { top: -24px; }
 
     /* parallax on touch is jittery — disable Y-translate on mobile */
     [data-parallax] { transform: none !important; }
@@ -702,7 +687,7 @@
     /* character sections */
     .cast-intro { padding: 80px 6vw 48px; min-height: auto; }
     .character-section { padding: 48px 6vw; }
-    .character-section.has-divider-top { padding-top: 100px; }
+    .character-section.has-divider-top { padding-top: 48px; }
     .character-header { margin-bottom: 32px; }
     .character-header .role { font-size: 14px; }
     .character-grid { grid-template-columns: 1fr; gap: 24px; margin-bottom: 32px; }
@@ -716,34 +701,14 @@
     :root { --t-display-xl: clamp(34px, 11vw, 56px); }
     section { padding: 48px 5vw; }
     .chapter { padding: 48px 5vw; }
-    .chapter.has-divider-top { padding-top: 100px; }
+    .chapter.has-divider-top { padding-top: 48px; }
     .film-section { padding: 48px 5vw; }
-    .film-section.has-divider-top { padding-top: 100px; }
+    .film-section.has-divider-top { padding-top: 48px; }
     .ref-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
-
-<!-- WAVE TEMPLATES -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <defs>
-    <symbol id="wd-down" viewBox="0 0 1440 220" preserveAspectRatio="none">
-      <path d="M0,110 C360,55 720,165 1080,110 C1260,82 1380,138 1440,110 L1440,-200 L0,-200 Z" fill="var(--cream)"/>
-      <path d="M0,94 C360,39 720,149 1080,94 C1260,66 1380,122 1440,94"
-            stroke="var(--muted-1)" stroke-width="9" fill="none" vector-effect="non-scaling-stroke"/>
-      <path d="M0,78 C360,23 720,133 1080,78 C1260,50 1380,106 1440,78"
-            stroke="var(--muted-1)" stroke-width="7" fill="none" opacity="0.55" vector-effect="non-scaling-stroke"/>
-    </symbol>
-    <symbol id="wd-up" viewBox="0 0 1440 220" preserveAspectRatio="none">
-      <path d="M0,110 C360,55 720,165 1080,110 C1260,82 1380,138 1440,110 L1440,-200 L0,-200 Z" fill="var(--muted-2)"/>
-      <path d="M0,126 C360,71 720,181 1080,126 C1260,98 1380,154 1440,126"
-            stroke="var(--muted-1)" stroke-width="9" fill="none" vector-effect="non-scaling-stroke"/>
-      <path d="M0,142 C360,87 720,197 1080,142 C1260,114 1380,170 1440,142"
-            stroke="var(--muted-1)" stroke-width="7" fill="none" opacity="0.55" vector-effect="non-scaling-stroke"/>
-    </symbol>
-  </defs>
-</svg>
 
 <nav class="nav" aria-label="primary">
   <div class="left"><span class="dot"></span><a href="#top">Honey Department<span class="sdk-tail"> × Studio SDK</span></a></div>
@@ -790,7 +755,6 @@
 
 <!-- 02 APPROACH -->
 <section class="chapter has-divider-top" id="approach-chapter">
-  <div class="wave-divider top" data-parallax="0.04"><svg><use href="#wd-down"/></svg></div>
   <div class="num-row reveal">
     <div class="label">Chapter 01</div>
     <h2>Look<br/>&amp; Feel</h2>
@@ -798,7 +762,6 @@
 </section>
 
 <section class="cream has-divider-top">
-  <div class="wave-divider top" data-parallax="0.04"><svg><use href="#wd-up"/></svg></div>
   <div class="two-col">
     <div class="col-text reveal">
       <h4>Look</h4>
@@ -829,7 +792,6 @@
 
 <!-- CHAPTER 02: THE FILMS -->
 <section class="chapter has-divider-top" id="films-chapter">
-  <div class="wave-divider top" data-parallax="0.04"><svg><use href="#wd-down"/></svg></div>
   <div class="num-row reveal">
     <div class="label">Chapter 02</div>
     <h2>The Films</h2>
@@ -838,7 +800,6 @@
 
 <!-- FILM 01 — drop images into  images/film-02-eat-it-anywhere/  (4 slots) -->
 <section class="film-section has-divider-top" id="film-eat-it-anywhere">
-  <div class="wave-divider top" data-parallax="0.04"><svg><use href="#wd-up"/></svg></div>
   <div class="film-header reveal">
     <span class="tag">Film 01</span>
     <h2>Eat It<br/>Anywhere</h2>
@@ -895,7 +856,6 @@
 </section>
 <!-- CHAPTER 03: THE CAST -->
 <section class="cast-intro has-divider-top" id="cast-chapter">
-  <div class="wave-divider top" data-parallax="0.04"><svg><use href="#wd-down"/></svg></div>
   <span class="label reveal">Chapter 03</span>
   <h2 class="reveal">The Cast</h2>
   <p class="reveal">Fourteen specific people. The films don't keep inventing new characters — they follow these. Each one shows up across the campaign, doing what they do, eating what they eat.</p>
@@ -903,7 +863,6 @@
 
 <!-- CHARACTER 01 — GENERAL GREAVES -->
 <section class="character-section has-divider-top" id="character-01">
-  <div class="wave-divider top" data-parallax="0.04"><svg><use href="#wd-up"/></svg></div>
   <div class="character-header reveal">
     <h2>Maurice<br/>Greeves</h2>
     <p class="role">US Army Commander</p>
@@ -1339,7 +1298,6 @@
 
 <!-- CHAPTER 04: PRODUCTION DESIGN -->
 <section class="chapter has-divider-top" id="prod-design-chapter">
-  <div class="wave-divider top" data-parallax="0.04"><svg><use href="#wd-down"/></svg></div>
   <div class="num-row reveal">
     <div class="label">Chapter 04</div>
     <h2>Production<br/>Design</h2>
@@ -1347,7 +1305,6 @@
 </section>
 
 <section class="cream has-divider-top" id="prod-design">
-  <div class="wave-divider top" data-parallax="0.04"><svg><use href="#wd-up"/></svg></div>
   <div class="two-col">
     <div class="col-text reveal">
       <h3>The Room Does<br/>The Joke.</h3>
@@ -1383,7 +1340,6 @@
 
 <!-- CHAPTER 05: EDITING & SOUND -->
 <section class="chapter has-divider-top" id="edit-chapter">
-  <div class="wave-divider top" data-parallax="0.04"><svg><use href="#wd-down"/></svg></div>
   <div class="num-row reveal">
     <div class="label">Chapter 05</div>
     <h2>Editing<br/>&amp; Sound</h2>
@@ -1391,7 +1347,6 @@
 </section>
 
 <section class="cream has-divider-top">
-  <div class="wave-divider top" data-parallax="0.04"><svg><use href="#wd-up"/></svg></div>
   <div class="two-col">
     <div class="col-text reveal">
       <h3>The Cut Should<br/>Arrive Late.</h3>
@@ -1413,7 +1368,6 @@
 
 <!-- CLOSING STRIP — drop images into  images/closing-strip/  (8 slots) -->
 <section class="strip-section scroll-driven no-min" style="padding-top: 140px;">
-  <div class="wave-divider top" data-parallax="0.04"><svg><use href="#wd-down"/></svg></div>
   <div class="strip" style="animation-duration: 70s;">
     <div class="frame"><img src="images/closing-strip/01.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-1/1200/750'" alt="" loading="lazy" /></div>
     <div class="frame"><img src="images/closing-strip/02.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/hd-cs-2/1200/750'" alt="" loading="lazy" /></div>
@@ -1437,7 +1391,6 @@
 
 <!-- 05 THANK YOU -->
 <section class="closing" id="thanks">
-  <div class="wave-divider top" data-parallax="0.04"><svg><use href="#wd-up"/></svg></div>
   <h2 class="mark reveal">THANK<br/>YOU.</h2>
   <div class="signoff reveal">
     Carlton Lorenz<br/>
